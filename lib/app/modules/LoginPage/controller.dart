@@ -7,6 +7,7 @@ import 'package:inventory_management_system/core/values/api_constants.dart';
 import 'package:inventory_management_system/core/values/storage_keys.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:inventory_management_system/routes/pages.dart';
 
 class LoginPageController  extends GetxController {
   DioSingleton _dio = DioSingleton();
@@ -36,8 +37,8 @@ class LoginPageController  extends GetxController {
         Get.find<AppConfigService>().isLoggedIn.value = true;
         storageBox.write(StorageConstants.IS_LOGGED_IN, true);
 
+        Get.offAndToNamed(Routes.DASHBOARD);
         
-
 
       }catch(err){
         print(err);

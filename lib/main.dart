@@ -5,8 +5,7 @@ remove dependecy injection from controller page
 
 */
 import 'package:inventory_management_system/app/data/services/service.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/page.dart';
-import 'package:inventory_management_system/app/modules/LoginPage/page.dart';
+import 'package:inventory_management_system/app/modules/LoginPage/binding.dart';
 import 'package:inventory_management_system/core/themes/app_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -29,10 +28,10 @@ Future<void> main() async{
 GetMaterialApp ims(){ 
     var controller = Get.find<AppConfigService>();
     return GetMaterialApp(
-      //later we can add splash screen too. 
       theme: darkThemeData,
       getPages: AppPages.getPages,
-      home:!controller.isLoggedIn.value ? LoginPage(): DashboardPage(),
+      initialBinding: LoginPageBinding(),
+      initialRoute: !controller.isLoggedIn.value ? Routes.LOGIN : Routes.DASHBOARD,
     );
 }
 

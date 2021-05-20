@@ -1,13 +1,14 @@
 import 'package:dio/dio.dart' as dio;
-import 'package:inventory_management_system/app/data/models/loginModel.dart';
-import 'package:inventory_management_system/app/data/services/service.dart';
-import 'package:inventory_management_system/core/utils/dio/dio_base.dart';
-import 'package:inventory_management_system/core/utils/dio/interceptor.dart';
-import 'package:inventory_management_system/core/values/api_constants.dart';
-import 'package:inventory_management_system/core/values/storage_keys.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:inventory_management_system/routes/pages.dart';
+
+import '../../../core/utils/dio/dio_base.dart';
+import '../../../core/utils/dio/interceptor.dart';
+import '../../../core/values/api_constants.dart';
+import '../../../core/values/storage_keys.dart';
+import '../../data/models/loginModel.dart';
+import '../../data/services/service.dart';
 
 class LoginPageController  extends GetxController {
   DioSingleton _dio = DioSingleton();

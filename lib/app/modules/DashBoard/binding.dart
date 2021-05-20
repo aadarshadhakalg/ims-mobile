@@ -1,11 +1,11 @@
-import 'package:get/get.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/controller.dart';
-import 'package:inventory_management_system/app/modules/LoginPage/controller.dart';
-class DashboardPageBinding extends Bindings{
+import 'package:get/instance_manager.dart';
 
+import 'controller.dart';
+
+class DashboardBindings extends Bindings{
   @override
   void dependencies() {
-    Get.lazyPut<DashboardPageController>(() => DashboardPageController());
+    Get.put<DashboardPageController>(DashboardPageController());
   }
 
 }

@@ -1,6 +1,6 @@
-import 'package:inventory_management_system/core/utils/dio/dio_base.dart';
-import 'package:inventory_management_system/core/values/api_constants.dart';
 import 'package:get/get.dart';
+
+import '../../../core/utils/dio/dio_base.dart';
 
 class DashboardPageController extends GetxController{
 

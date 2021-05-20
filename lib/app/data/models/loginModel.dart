@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 class LoginModel{
   LoginModel({this.username, this.password});
   final String username;

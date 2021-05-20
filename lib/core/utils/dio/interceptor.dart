@@ -1,11 +1,12 @@
 import 'package:dio/dio.dart';
-import 'package:inventory_management_system/app/data/services/service.dart';
-import 'package:inventory_management_system/core/utils/dio/dio_base.dart';
-import 'package:inventory_management_system/core/utils/jwt_base64.dart';
-import 'package:inventory_management_system/core/values/api_constants.dart';
-import 'package:inventory_management_system/core/values/storage_keys.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+
+import '../../../app/data/services/service.dart';
+import '../../values/api_constants.dart';
+import '../../values/storage_keys.dart';
+import '../jwt_base64.dart';
+import 'dio_base.dart';
 
 class DioInterceptor extends Interceptor{ 
 

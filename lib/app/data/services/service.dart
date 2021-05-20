@@ -5,7 +5,6 @@ import 'package:get_storage/get_storage.dart';
 import '../../../core/themes/app_theme.dart';
 import '../../../core/utils/dio/dio_base.dart';
 import '../../../core/utils/dio/interceptor.dart';
-import '../../../core/values/api_constants.dart';
 import '../../../core/values/storage_keys.dart';
 
 class AppConfigService extends GetxService {
@@ -18,7 +17,6 @@ class AppConfigService extends GetxService {
 
   Future<AppConfigService> init() async{
     box = GetStorage();
-    _dio.init(url: ApiConstants.SERVER_URL);
 
     // during refactoring i intend to remove this.
     // both access keys and refresh keys are already expired.

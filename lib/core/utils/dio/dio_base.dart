@@ -1,13 +1,9 @@
 import 'package:dio/dio.dart';
 
-/*
-  Yeshma singleton ko use vako xa ra? DioSingleton() use 
-
-*/
-
 class DioSingleton {
   DioSingleton._internal(); //private constructor
-  Dio _dio = Dio();
+  Dio _dio = Dio(
+  );
   static final DioSingleton _instance = DioSingleton._internal();
 
   factory DioSingleton() {

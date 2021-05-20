@@ -6,12 +6,12 @@ class DashboardPageController extends GetxController{
 
   var testApiString = 'this is dashboard'.obs;
 
-  void performTest() async {
+  Future<void> performTest() async {
     var _dio = DioSingleton();
+    
     try{
       var response = await _dio.instance.get('/test/');
-      print(response.data);
-      testApiString.value = response.data.toString();
+      testApiString.value = response.data["message"].toString();
     }catch(err){
       print(err);
     }

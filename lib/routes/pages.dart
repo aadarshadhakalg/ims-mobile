@@ -1,6 +1,8 @@
-import 'package:get/get.dart';
 import 'package:inventory_management_system/app/modules/DashBoard/binding.dart';
 import 'package:inventory_management_system/app/modules/DashBoard/page.dart';
+import 'package:inventory_management_system/app/modules/LoginPage/binding.dart';
+import 'package:inventory_management_system/app/modules/LoginPage/page.dart';
+import 'package:get/get.dart';
 
 import '../app/modules/LoginPage/binding.dart';
 import '../app/modules/LoginPage/page.dart';

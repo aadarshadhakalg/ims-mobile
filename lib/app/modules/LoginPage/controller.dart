@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart' as dio;
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:inventory_management_system/routes/pages.dart';
 
 import '../../../core/utils/dio/dio_base.dart';
 import '../../../core/utils/dio/interceptor.dart';
@@ -37,8 +38,8 @@ class LoginPageController  extends GetxController {
         Get.find<AppConfigService>().isLoggedIn.value = true;
         storageBox.write(StorageConstants.IS_LOGGED_IN, true);
 
+        Get.offAndToNamed(Routes.DASHBOARD);
         
-
 
       }catch(err){
         print(err);

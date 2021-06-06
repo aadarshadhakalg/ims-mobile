@@ -12,7 +12,7 @@ part './routes.dart';
 abstract class AppPages {
   static final getPages = [
       GetPage(name:Routes.LOGIN, page: () => LoginPage(), binding: LoginPageBinding()),
-      GetPage(name: Routes.DASHBOARD, page: () => DashboardPage(),binding: DashboardBindings()),
+      GetPage(name: Routes.DASHBOARD, page: () => LayoutPage(),binding: DashboardBindings()),
   ];
   
 }

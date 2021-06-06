@@ -1,21 +1,27 @@
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
+import 'package:inventory_management_system/app/data/repositories/auth_repository.dart';
 
-import '../../../core/utils/dio/dio_base.dart';
+enum DashboardStates {
+  InitialState,
+  LogingOutState,
+}
 
-class DashboardPageController extends GetxController{
+class DashboardPageController extends GetxController {
+  final AuthRepository _authRepository = AuthRepository.instance();
+  Rx<DashboardStates> currentState =
+      Rx<DashboardStates>(DashboardStates.InitialState);
 
-  var testApiString = 'this is dashboard'.obs;
-
-  Future<void> performTest() async {
-    var _dio = DioSingleton();
-    
-    try{
-      var response = await _dio.instance.get('/test/');
-      testApiString.value = response.data["message"].toString();
-    }catch(err){
-      print(err);
+ Future<void> logoutButtonPressed() async {
+    currentState.value = DashboardStates.LogingOutState;
+    try {
+      await _authRepository.logout();
+      Get.offAll('/login');
+    } catch (e) {
+      print(e);
+      Fluttertoast.showToast(msg: 'e');
+    } finally {
+      currentState.value = DashboardStates.InitialState;
     }
-
   }
-
 }

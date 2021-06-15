@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/controller.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/controllers/MenuController.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/responsive.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/main/components/side_menu.dart';
+import 'controller.dart';
+import 'ui/controllers/MenuController.dart';
+import 'ui/responsive.dart';
+import 'ui/screens/main/components/side_menu.dart';
 
 import 'ui/screens/dashboard/dashboard_screen.dart';
 

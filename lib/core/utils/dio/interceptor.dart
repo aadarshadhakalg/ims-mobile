@@ -34,7 +34,6 @@ class DioInterceptor extends Interceptor {
   Future onError(DioError err, ErrorInterceptorHandler handler) async {
     if (err.type == DioErrorType.response) {
       if (err.response.statusCode == 401) {
-        //TODO: lock kina gareko?
         _dio.instance.interceptors.requestLock.lock();
         RequestOptions options = err.response.requestOptions;
         await updateAcessToken();

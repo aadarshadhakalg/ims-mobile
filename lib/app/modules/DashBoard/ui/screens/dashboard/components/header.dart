@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/controller.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/controllers/MenuController.dart';
+import '../../../../controller.dart';
+import '../../../controllers/MenuController.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/modules/LoginPage/controller.dart';
 
 import '../../../constants.dart';
 import '../../../responsive.dart';

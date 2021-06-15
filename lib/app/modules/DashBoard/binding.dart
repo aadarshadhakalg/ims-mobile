@@ -1,5 +1,5 @@
 import 'package:get/instance_manager.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/controllers/MenuController.dart';
+import 'ui/controllers/MenuController.dart';
 
 import 'controller.dart';
 

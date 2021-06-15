@@ -1,8 +1,6 @@
 /*
-TODO;
-create splash page. 
-remove dependecy injection from controller page
-
+TODO
+create splash page remove dependecy injection from controller page
 */
 import 'package:inventory_management_system/app/data/services/service.dart';
 import 'package:inventory_management_system/app/modules/LoginPage/binding.dart';

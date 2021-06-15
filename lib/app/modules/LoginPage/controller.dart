@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/data/repositories/auth_repository.dart';
+import '../../data/repositories/auth_repository.dart';
 import '../../data/models/loginModel.dart';
 
 

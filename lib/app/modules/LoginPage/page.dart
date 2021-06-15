@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/responsive.dart';
+import '../DashBoard/ui/responsive.dart';
 
 import '../../../core/values/ui_constants.dart';
 import 'controller.dart';

@@ -1,8 +1,8 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:inventory_management_system/app/data/repositories/auth_repository.dart';
-import 'package:inventory_management_system/core/values/storage_keys.dart';
+import '../../data/repositories/auth_repository.dart';
+import '../../../core/values/storage_keys.dart';
 
 enum DashboardStates {
   InitialState,

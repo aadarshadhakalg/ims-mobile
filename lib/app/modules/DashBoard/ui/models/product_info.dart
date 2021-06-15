@@ -1,6 +1,6 @@
 
 import 'package:flutter/material.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/constants.dart';
+import '../constants.dart';
 
 class ProductInfo {
   final String image, title, category;

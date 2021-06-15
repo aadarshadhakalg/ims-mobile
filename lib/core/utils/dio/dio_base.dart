@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:inventory_management_system/core/values/api_constants.dart';
+import '../../values/api_constants.dart';
 
 class DioSingleton {
   DioSingleton._internal() {

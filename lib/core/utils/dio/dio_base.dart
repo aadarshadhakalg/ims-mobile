@@ -4,7 +4,7 @@ import 'package:inventory_management_system/core/values/api_constants.dart';
 class DioSingleton {
   DioSingleton._internal() {
     _dio.options.baseUrl = ApiConstants.SERVER_URL;
-    _dio.options.connectTimeout = 5000;
+    _dio.options.connectTimeout = 10000;
     _dio.options.receiveTimeout = 3000;
   }
   Dio _dio = Dio();

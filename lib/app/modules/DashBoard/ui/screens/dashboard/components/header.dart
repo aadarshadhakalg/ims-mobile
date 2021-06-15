@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:inventory_management_system/app/modules/DashBoard/controller.dart';
 import 'package:inventory_management_system/app/modules/DashBoard/ui/controllers/MenuController.dart';
 import 'package:get/get.dart';
+import 'package:inventory_management_system/app/modules/LoginPage/controller.dart';
 
 import '../../../constants.dart';
 import '../../../responsive.dart';
@@ -24,7 +25,7 @@ class Header extends StatelessWidget {
           ),
         if (!Responsive.isMobile(context))
           Text(
-            "Dashboard",
+            "Sales Dashboard",
             style: Theme.of(context).textTheme.headline6,
           ),
         if (!Responsive.isMobile(context))
@@ -86,7 +87,7 @@ class ProfileCard extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-                child: Text("Angelina Joli"),
+                child: Text(Get.find<DashboardPageController>().loggedInUser.value),
               ),
             Icon(Icons.keyboard_arrow_down),
           ],

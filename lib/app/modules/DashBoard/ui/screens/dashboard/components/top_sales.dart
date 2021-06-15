@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/models/MyFiles.dart';
-
+import 'package:flutter/rendering.dart';
+import 'package:inventory_management_system/app/modules/DashBoard/ui/models/product_info.dart';
 import '../../../constants.dart';
 import '../../../responsive.dart';
-import 'file_info_card.dart';
+import 'product_info_card.dart';
 
-class MyFiles extends StatelessWidget {
-  const MyFiles({
-    Key key,
-  }) : super(key: key);
+class TopSales extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +16,7 @@ class MyFiles extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text(
-              "My Files",
+              "Top Sellers",
               style: Theme.of(context).textTheme.subtitle1,
             ),
             ElevatedButton.icon(
@@ -32,18 +29,18 @@ class MyFiles extends StatelessWidget {
               ),
               onPressed: () {},
               icon: Icon(Icons.add),
-              label: Text("Add New"),
+              label: Text("New Bill"),
             ),
           ],
         ),
         SizedBox(height: defaultPadding),
         Responsive(
-          mobile: FileInfoCardGridView(
+          mobile: ProductInfoCardGridView(
             crossAxisCount: _size.width < 650 ? 2 : 4,
             childAspectRatio: _size.width < 650 ? 1.3 : 1,
           ),
-          tablet: FileInfoCardGridView(),
-          desktop: FileInfoCardGridView(
+          tablet: ProductInfoCardGridView(),
+          desktop: ProductInfoCardGridView(
             childAspectRatio: _size.width < 1400 ? 1.1 : 1.4,
           ),
         ),
@@ -52,8 +49,8 @@ class MyFiles extends StatelessWidget {
   }
 }
 
-class FileInfoCardGridView extends StatelessWidget {
-  const FileInfoCardGridView({
+class ProductInfoCardGridView extends StatelessWidget {
+  const ProductInfoCardGridView({
     Key key,
     this.crossAxisCount = 4,
     this.childAspectRatio = 1,
@@ -65,16 +62,17 @@ class FileInfoCardGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
+      // scrollDirection: Axis.horizontal,
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: demoMyFiles.length,
+      itemCount: demoProducts.length,
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: crossAxisCount,
         crossAxisSpacing: defaultPadding,
         mainAxisSpacing: defaultPadding,
         childAspectRatio: childAspectRatio,
       ),
-      itemBuilder: (context, index) => FileInfoCard(info: demoMyFiles[index]),
+      itemBuilder: (context, index) => ProductInfoCard(info: demoProducts[index]),
     );
   }
 }

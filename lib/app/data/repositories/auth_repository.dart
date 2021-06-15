@@ -13,20 +13,26 @@ class AuthRepository {
   final DioSingleton _dio = DioSingleton();
   final GetStorage storageBox = GetStorage();
 
-  Future<bool> login(LoginModel loginModel) async {
+  Future<String> login(LoginModel loginModel) async {
     try {
-      dio.Response response = await _dio.instance.post(ApiConstants.LOGIN,
-          data: dio.FormData.fromMap(loginModel.toJSON()));
+      dio.Response response = await _dio.instance.post(
+        ApiConstants.LOGIN,
+        data: dio.FormData.fromMap(
+          loginModel.toJSON(),
+        ),
+      );
 
       if (response.statusCode == 200 || response.statusCode == 201) {
         storageBox.write(StorageConstants.ACCESS_KEYS, response.data['access']);
         storageBox.write(
             StorageConstants.REFRESH_KEYS, response.data['refresh']);
+        storageBox.write(
+            StorageConstants.LOGGED_IN_USER, response.data['user']);
         _dio.instance.interceptors.add(
           DioInterceptor(),
         );
         storageBox.write(StorageConstants.IS_LOGGED_IN, true);
-        return true;
+        return response.data["user"];
       } else {
         throw Exception('${response.statusCode}');
       }
@@ -37,14 +43,19 @@ class AuthRepository {
 
   Future<void> logout() async {
     try {
-      dio.Response response = await _dio.instance.post(ApiConstants.LOGOUT);
-      if (response.statusCode == 200) {
+      var refresh = await storageBox.read(StorageConstants.REFRESH_KEYS);
+      dio.Response response = await _dio.instance.post(ApiConstants.LOGOUT,
+          data: dio.FormData.fromMap({
+            'refresh': refresh,
+          }));
+      if (response.statusCode == 200 || response.statusCode == 204) {
         storageBox.erase();
       } else {
+        print(response.statusCode);
         throw Exception('Error!');
       }
     } catch (e) {
-      throw Exception(e);
+      throw Exception(e.toString());
     }
   }
 }

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/models/RecentFile.dart';
+import 'package:inventory_management_system/app/modules/DashBoard/ui/models/sale_model.dart';
 
 import '../../../constants.dart';
 
-class RecentFiles extends StatelessWidget {
-  const RecentFiles({
+class RecentSales extends StatelessWidget {
+  const RecentSales({
     Key key,
   }) : super(key: key);
 
@@ -21,7 +20,7 @@ class RecentFiles extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            "Recent Files",
+            "Recent Sales",
             style: Theme.of(context).textTheme.subtitle1,
           ),
           SizedBox(
@@ -31,18 +30,18 @@ class RecentFiles extends StatelessWidget {
               columnSpacing: defaultPadding,
               columns: [
                 DataColumn(
-                  label: Text("File Name"),
+                  label: Text("Customer Name"),
                 ),
                 DataColumn(
                   label: Text("Date"),
                 ),
                 DataColumn(
-                  label: Text("Size"),
+                  label: Text("Bill Amount"),
                 ),
               ],
               rows: List.generate(
-                demoRecentFiles.length,
-                (index) => recentFileDataRow(demoRecentFiles[index]),
+                demoRecentSales.length,
+                (index) => recentSaleDataRow(demoRecentSales[index]),
               ),
             ),
           ),
@@ -52,26 +51,26 @@ class RecentFiles extends StatelessWidget {
   }
 }
 
-DataRow recentFileDataRow(RecentFile fileInfo) {
+DataRow recentSaleDataRow(RecentSalesModel saleInfo) {
   return DataRow(
     cells: [
       DataCell(
         Row(
           children: [
-            SvgPicture.asset(
-              fileInfo.icon,
+            Image.asset(
+              saleInfo.photo,
               height: 30,
               width: 30,
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: defaultPadding),
-              child: Text(fileInfo.title),
+              child: Text(saleInfo.name),
             ),
           ],
         ),
       ),
-      DataCell(Text(fileInfo.date)),
-      DataCell(Text(fileInfo.size)),
+      DataCell(Text(saleInfo.date)),
+      DataCell(Text('Rs ${saleInfo.billAmount}')),
     ],
   );
 }

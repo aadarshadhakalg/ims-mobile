@@ -4,9 +4,9 @@ import '../../constants.dart';
 import '../../responsive.dart';
 import 'components/header.dart';
 
-import 'components/my_files.dart';
-import 'components/recent_files.dart';
-import 'components/storage_details.dart';
+import 'components/top_sales.dart';
+import 'components/recent_sales.dart';
+import 'components/category_details.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -25,12 +25,12 @@ class DashboardScreen extends StatelessWidget {
                   flex: 5,
                   child: Column(
                     children: [
-                      MyFiles(),
+                      TopSales(),
                       SizedBox(height: defaultPadding),
-                      RecentFiles(),
+                      RecentSales(),
                       if (Responsive.isMobile(context))
                         SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) StarageDetails(),
+                      if (Responsive.isMobile(context)) CategoryDetails(),
                     ],
                   ),
                 ),
@@ -40,7 +40,7 @@ class DashboardScreen extends StatelessWidget {
                 if (!Responsive.isMobile(context))
                   Expanded(
                     flex: 2,
-                    child: StarageDetails(),
+                    child: CategoryDetails(),
                   ),
               ],
             )

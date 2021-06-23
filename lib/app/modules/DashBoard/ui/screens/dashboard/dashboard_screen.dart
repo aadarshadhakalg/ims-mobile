@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/controllers/MenuController.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/views/analysis_view.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/views/category_view.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/views/counter_view.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/views/product_view.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/views/setting_view.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/views/staff_view.dart';
+import '../../controllers/MenuController.dart';
+import 'views/analysis_view.dart';
+import 'views/category_view.dart';
+import 'views/counter_view.dart';
+import 'views/product_view.dart';
+import 'views/setting_view.dart';
+import 'views/staff_view.dart';
 
 import '../../constants.dart';
 import 'components/header.dart';

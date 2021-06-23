@@ -1,10 +1,11 @@
+import 'package:dio/dio.dart' as dio;
 import 'package:get_storage/get_storage.dart';
-import '../models/loginModel.dart';
+
 import '../../../core/utils/dio/dio_base.dart';
 import '../../../core/utils/dio/interceptor.dart';
 import '../../../core/values/api_constants.dart';
 import '../../../core/values/storage_keys.dart';
-import 'package:dio/dio.dart' as dio;
+import '../models/loginModel.dart';
 
 class AuthRepository {
   AuthRepository._internal();

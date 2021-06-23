@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+
 import '../../values/api_constants.dart';
 
 class DioSingleton {

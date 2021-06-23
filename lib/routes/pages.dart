@@ -1,8 +1,9 @@
+import 'package:get/get.dart';
+
 import '../app/modules/DashBoard/binding.dart';
 import '../app/modules/DashBoard/page.dart';
 import '../app/modules/LoginPage/binding.dart';
 import '../app/modules/LoginPage/page.dart';
-import 'package:get/get.dart';
 
 part './routes.dart';
 

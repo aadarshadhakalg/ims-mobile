@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/constants.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/components/category_details.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/components/recent_sales.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/components/top_sales.dart';
+import '../../../constants.dart';
+import '../components/category_details.dart';
+import '../components/recent_sales.dart';
+import '../components/top_sales.dart';
 
 import '../../../responsive.dart';
 

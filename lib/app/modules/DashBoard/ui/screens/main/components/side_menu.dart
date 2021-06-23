@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:get/get.dart';
+import 'package:inventory_management_system/app/modules/DashBoard/ui/controllers/MenuController.dart';
 
 class SideMenu extends StatelessWidget {
-  const SideMenu({
+  SideMenu({
     Key key,
   }) : super(key: key);
+
+  final MenuController _menuController = Get.find<MenuController>();
 
   @override
   Widget build(BuildContext context) {
@@ -15,39 +19,46 @@ class SideMenu extends StatelessWidget {
             child: Image.asset("assets/images/logo.png"),
           ),
           DrawerListTile(
-            title: "Dashbord",
+            title: "Counter",
             svgSrc: "assets/icons/menu_dashbord.svg",
-            press: () {},
+            press: () {
+              _menuController.goTo(Menu.Home);
+            },
           ),
           DrawerListTile(
             title: "Products",
             svgSrc: "assets/icons/menu_tran.svg",
-            press: () {},
+            press: () {
+              _menuController.goTo(Menu.Products);
+            },
           ),
           DrawerListTile(
             title: "Categories",
             svgSrc: "assets/icons/menu_tran.svg",
-            press: () {},
+            press: () {
+              _menuController.goTo(Menu.Category);
+            },
           ),
           DrawerListTile(
             title: "Analysis",
             svgSrc: "assets/icons/menu_task.svg",
-            press: () {},
+            press: () {
+              _menuController.goTo(Menu.Analysis);
+            },
           ),
           DrawerListTile(
             title: "Staff Management",
             svgSrc: "assets/icons/menu_store.svg",
-            press: () {},
-          ),
-          DrawerListTile(
-            title: "Notification",
-            svgSrc: "assets/icons/menu_notification.svg",
-            press: () {},
+            press: () {
+              _menuController.goTo(Menu.Staff);
+            },
           ),
           DrawerListTile(
             title: "Settings",
             svgSrc: "assets/icons/menu_setting.svg",
-            press: () {},
+            press: () {
+              _menuController.goTo(Menu.Setting);
+            },
           ),
         ],
       ),

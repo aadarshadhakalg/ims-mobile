@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:inventory_management_system/app/modules/DashBoard/ui/controllers/MenuController.dart';
+import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/views/analysis_view.dart';
+import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/views/category_view.dart';
+import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/views/counter_view.dart';
+import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/views/product_view.dart';
+import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/views/setting_view.dart';
+import 'package:inventory_management_system/app/modules/DashBoard/ui/screens/dashboard/views/staff_view.dart';
 
 import '../../constants.dart';
-import '../../responsive.dart';
 import 'components/header.dart';
-
-import 'components/top_sales.dart';
-import 'components/recent_sales.dart';
-import 'components/category_details.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
@@ -18,32 +21,21 @@ class DashboardScreen extends StatelessWidget {
           children: [
             Header(),
             SizedBox(height: defaultPadding),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  flex: 5,
-                  child: Column(
-                    children: [
-                      TopSales(),
-                      SizedBox(height: defaultPadding),
-                      RecentSales(),
-                      if (Responsive.isMobile(context))
-                        SizedBox(height: defaultPadding),
-                      if (Responsive.isMobile(context)) CategoryDetails(),
-                    ],
-                  ),
-                ),
-                if (!Responsive.isMobile(context))
-                  SizedBox(width: defaultPadding),
-                // On Mobile means if the screen is less than 850 we dont want to show it
-                if (!Responsive.isMobile(context))
-                  Expanded(
-                    flex: 2,
-                    child: CategoryDetails(),
-                  ),
-              ],
-            )
+            GetX(builder: (MenuController controller) {
+              if (controller.selectedMenuItem.value == Menu.Category) {
+                return CategoryView();
+              } else if (controller.selectedMenuItem.value == Menu.Products) {
+                return ProductView();
+              } else if (controller.selectedMenuItem.value == Menu.Analysis) {
+                return AnalysisView();
+              } else if (controller.selectedMenuItem.value == Menu.Setting) {
+                return SettingView();
+              } else if (controller.selectedMenuItem.value == Menu.Staff) {
+                return StaffView();
+              } else {
+                return CounterView();
+              }
+            }),
           ],
         ),
       ),

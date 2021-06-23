@@ -9,7 +9,7 @@ String jwtConvertString(String str){
   // seperated by .
   // we only want middle part
 
-  str = str.split('.')[1];
+  str = str?.split('.')[1];
   var padding = '';
 
   if(str.length % 4 != 0){

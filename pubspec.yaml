@@ -30,6 +30,7 @@ dependencies:
   google_fonts: ^2.1.0
   fl_chart: ^0.36.1
   fluttertoast: ^8.0.7
+  dartz: ^0.9.2
 
 dev_dependencies:
   test:

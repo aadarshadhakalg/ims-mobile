@@ -1,7 +1,22 @@
 abstract class ApiConstants{
+  
+  // Authentication
   static const SERVER_URL = 'http://voidash.pythonanywhere.com';
   static const LOGIN = '/login/';
   static const LOGOUT = '/logout/';
   static const TEST = '/test/';
   static const NEW_REFRESH_KEYS = '/login/refresh/';
+
+  // Category
+  static const ADDCATEGORY = '/product/addcategory/';
+  static const LISTCATEGORY = '/product/categorylist/';
+  static const DELETECATEGORY = '/product/categorydelete/';
+  static const UPDATECATEGORY = '/product/categoryupdate/';
+
+  // SubCategory
+  static const ADDSUBCATEGORY = '/product/addsubcategory/';
+  static const LISTSUBCATEGORY = '/product/subcategorylist/';
+  static const DELETESUBCATEGORY = '/product/subcategorydelete/';
+  static const UPDATESUBCATEGORY = '/product/subcategoryupdate/';
+  
 }

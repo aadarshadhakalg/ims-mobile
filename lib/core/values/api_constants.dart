@@ -19,4 +19,9 @@ abstract class ApiConstants{
   static const DELETESUBCATEGORY = '/product/subcategorydelete/';
   static const UPDATESUBCATEGORY = '/product/subcategoryupdate/';
   
+  // Product
+  static const ADDPRODUCT = '/product/addproduct/';
+  static const LISTPRODUCT = '/product/productlist/';
+  static const DELETEPRODUCT = '/product/productdelete/';
+  static const UPDATEPRODUCT = '/product/productupdate/';
 }

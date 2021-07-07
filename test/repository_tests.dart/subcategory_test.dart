@@ -50,13 +50,13 @@ main() {
       test(
         'Update Sub Category Test',
         () async {
-          subCategoryTestModel.urlSlug = "new_subcat_slug";
+          subCategoryTestModel.urlSlug = "new_test_subcat_slug";
 
           await repository
               .updateSubCategory(subCategoryTestModel, 'test_subcat')
               .then(
                 (value) => value.fold(
-                  (response) => expect(response.urlSlug, "new_subcat_slug"),
+                  (response) => expect(response.urlSlug, "new_test_subcat_slug"),
                   (r) => expect(r, null),
                 ),
               );
@@ -65,7 +65,7 @@ main() {
       test(
         'Delete Sub Category Test',
         () async {
-          await repository.deleteSubCategory("new_subcat_slug").then(
+          await repository.deleteSubCategory("new_test_subcat_slug").then(
                 (value) => value.fold(
                   (response) => expect(response, true),
                   (r) => expect(r, null),

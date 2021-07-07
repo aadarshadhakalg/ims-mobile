@@ -1,7 +1,7 @@
 import 'package:inventory_management_system/app/data/models/category.model.dart';
 import 'package:inventory_management_system/app/data/models/loginModel.dart';
 import 'package:inventory_management_system/app/data/repositories/auth_repository.dart';
-import 'package:inventory_management_system/app/data/repositories/category_repositories.dart';
+import 'package:inventory_management_system/app/data/repositories/category_repository.dart';
 import 'package:test/test.dart';
 
 main() {

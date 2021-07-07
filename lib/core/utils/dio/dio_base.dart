@@ -6,7 +6,7 @@ class DioSingleton {
   DioSingleton._internal() {
     _dio.options.baseUrl = ApiConstants.SERVER_URL;
     _dio.options.connectTimeout = 10000;
-    _dio.options.receiveTimeout = 3000;
+    _dio.options.receiveTimeout = 0;
   }
   Dio _dio = Dio();
   static final DioSingleton _instance = DioSingleton._internal();

@@ -3,13 +3,13 @@ abstract class Failure{
   Failure(this.message);
 }
 
+// All Other Failures
 class UnknownAppFailure extends Failure{
   UnknownAppFailure() : super('Something Went Wrong');
 }
 
 
 // Category Failures
-
 class CategoryAdditionFailure extends Failure{
   CategoryAdditionFailure(String message) : super(message);
 }
@@ -42,4 +42,22 @@ class SubCategoryDeletionFailure extends Failure{
 
 class SubCategoryUpdateFailure extends Failure{
   SubCategoryUpdateFailure(String message) : super(message);
+}
+
+// Product Failures
+
+class ProductAdditionFailure extends Failure{
+  ProductAdditionFailure(String message) : super(message);
+}
+
+class ProductListingFailure extends Failure{
+  ProductListingFailure(String message) : super(message);
+}
+
+class ProductDeletionFailure extends Failure{
+  ProductDeletionFailure(String message) : super(message);
+}
+
+class ProductUpdateFailure extends Failure{
+  ProductUpdateFailure(String message) : super(message);
 }

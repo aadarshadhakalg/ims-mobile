@@ -31,6 +31,7 @@ GetMaterialApp ims(){
       getPages: AppPages.getPages,
       initialBinding: LoginPageBinding(),
       initialRoute: !controller.isLoggedIn.value ? Routes.LOGIN : Routes.DASHBOARD,
+      // initialRoute: Routes.LOGIN,
     );
 }
 

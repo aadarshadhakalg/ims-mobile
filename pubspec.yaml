@@ -30,6 +30,7 @@ dependencies:
   google_fonts: ^2.1.0
   fl_chart: ^0.36.1
   fluttertoast: ^8.0.7
+  flutter_form_builder:
 
 dev_dependencies:
   test:
@@ -39,7 +40,7 @@ dev_dependencies:
 flutter:
 
   # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
+  # included with your applicat fion, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
 

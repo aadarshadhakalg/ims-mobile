@@ -16,7 +16,7 @@ class AddProduct extends StatelessWidget {
 
   Future<dynamic> updateData(Map<String,dynamic> d) async {
     try{
-      var response = await DioSingleton().instance.put('/product/productdetail/${arguments[1]}'
+      var response = await DioSingleton().instance.put('/product/productdetail/${arguments[1]}/'
                   , data: d
           );
 
@@ -58,7 +58,7 @@ class AddProduct extends StatelessWidget {
 if(arguments[0] == 'update'){
     try{
       var response = await DioSingleton().instance.get('/product/productlist/${arguments[1]}/');
-      product =  ProductModel.fromJson(response.data['results']);
+      product =  ProductModel.fromJson(response.data['results'][0]);
     }catch(e){
       print(e);
     }
@@ -92,11 +92,12 @@ if(arguments[0] == 'update'){
     return subcategories;
   }
 
-  Padding categoryChoiceChip(List<CategoryModel> data,String name) {
+  Padding categoryChoiceChip(List<CategoryModel> data,String name,int initialValue) {
     return Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: FormBuilderChoiceChip(
             name: name,
+            initialValue: initialValue ,
             decoration: InputDecoration(
                 contentPadding: EdgeInsets.all(2)
             ),
@@ -143,7 +144,7 @@ if(arguments[0] == 'update'){
                     Text("Category"),
                     FutureBuilder(builder: (context,dataSnap){
                       if(dataSnap.hasData){
-                        return categoryChoiceChip(dataSnap.data,'categories_id');
+                        return categoryChoiceChip(dataSnap.data,'categories_id',1);
                       }else if(dataSnap.hasError){
                         return Center(child: Text("Error fetching subcategories list"));
                       }
@@ -161,7 +162,7 @@ if(arguments[0] == 'update'){
                     Text("Sub Category"),
                     FutureBuilder(builder: (context,dataSnap){
                       if(dataSnap.hasData){
-                        return categoryChoiceChip(dataSnap.data,'sub_categories_id');
+                        return categoryChoiceChip(dataSnap.data,'sub_categories_id',data.subCategoriesId);
                       }else if(dataSnap.hasError){
                         return Center(child: Text("Error fetching subcategories list"));
                       }

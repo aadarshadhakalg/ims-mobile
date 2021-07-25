@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/utils.dart';
+import 'package:inventory_management_system/routes/pages.dart';
 import '../../../models/product_info.dart';
 import '../../../constants.dart';
 import '../../../responsive.dart';
@@ -27,7 +30,9 @@ class TopSales extends StatelessWidget {
                       defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
                 ),
               ),
-              onPressed: () {},
+              onPressed: () {
+                Get.toNamed(Routes.NEWBILL);
+              },
               icon: Icon(Icons.add),
               label: Text("New Bill"),
             ),

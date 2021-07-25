@@ -7,4 +7,6 @@ abstract class Routes {
   static const ADDCATEGORY = '/add-category';
   static const ADDSUBCATEGORY = '/add-subcategory';
   static const ADDPRODUCT = '/add-product';
+
+  static const NEWBILL ='/new-bill';
 }

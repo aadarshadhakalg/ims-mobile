@@ -23,6 +23,7 @@ GetMaterialApp ims() {
     //later we can add splash screen too.
     theme: darkThemeData,
     getPages: AppPages.getPages,
-    home: !controller.isLoggedIn.value ? LoginPage(): LayoutPage(),
+    home: LoginPage(),
+    // home: !controller.isLoggedIn.value ? LoginPage(): LayoutPage(),
   );
 }

@@ -32,6 +32,7 @@ dependencies:
   fluttertoast: ^8.0.7
   dartz: ^0.9.2
   animations: ^2.0.1
+  flutter_form_builder:
   reactive_forms: ^10.5.0
 
 dev_dependencies:
@@ -42,7 +43,7 @@ dev_dependencies:
 flutter:
 
   # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
+  # included with your applicat fion, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
 

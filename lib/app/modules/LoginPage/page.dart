@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../DashBoard/ui/responsive.dart';
@@ -56,7 +55,7 @@ class LoginPage extends GetView<LoginPageController> {
                             ),
                             LoginField(
                               onChange: controller.onPasswordChanged,
-                              icon: Icons.password_rounded,
+                              icon: Icons.circle,
                               obscure: true,
                               label: 'Password',
                             ),

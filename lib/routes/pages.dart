@@ -1,4 +1,6 @@
 import 'package:get/get.dart';
+import 'package:inventory_management_system/app/modules/StaffManagement/pages/add_staff_binding.dart';
+import 'package:inventory_management_system/app/modules/StaffManagement/pages/add_staff_page.dart';
 
 import '../app/modules/DashBoard/binding.dart';
 import '../app/modules/DashBoard/page.dart';
@@ -15,15 +17,37 @@ part './routes.dart';
 
 abstract class AppPages {
   static final getPages = [
-      GetPage(name:Routes.LOGIN, page: () => LoginPage(), binding: LoginPageBinding()),
-      GetPage(name: Routes.DASHBOARD, page: () => LayoutPage(),binding: DashboardBindings()),
-      GetPage(name: Routes.ADDCATEGORY, page: () => AddCategoryForm()),
-      GetPage(name: Routes.ADDSUBCATEGORY, page: () => AddSubCategoryForm()),
-      GetPage(name: Routes.ADDPRODUCT, page: () => AddProduct()),
-      GetPage(name: Routes.NEWBILL, page: () => BillPage(), binding: BillPageBinding()),
+    GetPage(
+      name: Routes.LOGIN,
+      page: () => LoginPage(),
+      binding: LoginPageBinding(),
+    ),
+    GetPage(
+      name: Routes.DASHBOARD,
+      page: () => LayoutPage(),
+      binding: DashboardBindings(),
+    ),
+    GetPage(
+      name: Routes.ADDCATEGORY,
+      page: () => AddCategoryForm(),
+    ),
+    GetPage(
+      name: Routes.ADDSUBCATEGORY,
+      page: () => AddSubCategoryForm(),
+    ),
+    GetPage(
+      name: Routes.ADDPRODUCT,
+      page: () => AddProduct(),
+    ),
+    GetPage(
+      name: Routes.NEWBILL,
+      page: () => BillPage(),
+      binding: BillPageBinding(),
+    ),
+    GetPage(
+      name: Routes.ADDSTAFF,
+      page: () => AddStaffPage(),
+      binding: AddStaffBinding(),
+    ),
   ];
-  
 }
-
-
-

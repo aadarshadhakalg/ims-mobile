@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:inventory_management_system/app/data/models/staff.model.dart';
 import 'package:inventory_management_system/app/modules/DashBoard/ui/constants.dart';
 import 'package:inventory_management_system/app/modules/DashBoard/ui/responsive.dart';
+import 'package:inventory_management_system/app/modules/StaffManagement/staff.controller.dart';
 import 'package:inventory_management_system/app/modules/StaffManagement/widgets/staffbox_widget.dart';
 
 class StaffView extends StatelessWidget {
+  final StaffController _staffController = Get.put(StaffController());
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,27 +29,35 @@ class StaffView extends StatelessWidget {
                         defaultPadding / (Responsive.isMobile(context) ? 2 : 1),
                   ),
                 ),
-                onPressed: () {},
+                onPressed: () {
+                  Get.toNamed('/add-staff');
+                },
                 icon: Icon(Icons.add),
                 label: Text("Add Staff"),
               ),
             ],
           ),
           SizedBox(height: defaultPadding),
-          Wrap(
-            spacing: 10.0,
-            runSpacing: 10.0,
-            direction: Axis.horizontal,
-            children: [
-              for (int i = 0; i < 10; i++)
-                Hero(
-                  tag: 'staff-avatar',
-                  child: StaffBox(
-                    id: '1',
-                    name: 'Aadarsha Dhakal',
-                  ),
-                )
-            ],
+          GetX<StaffController>(
+            builder: (StaffController controller) {
+              if (controller.allStaffs.value == null) {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                return Wrap(
+                  spacing: 10.0,
+                  runSpacing: 10.0,
+                  direction: Axis.horizontal,
+                  children: [
+                    for (Staff staff in controller.allStaffs.value.results)
+                      StaffBox(
+                        staff: staff,
+                      )
+                  ],
+                );
+              }
+            },
           ),
         ],
       ),

@@ -45,6 +45,7 @@ class StaffModel {
 
 class Staff {
   Staff({
+    this.id,
     this.username,
     this.email,
     this.name,
@@ -52,41 +53,54 @@ class Staff {
     this.mobileNumber,
     this.address,
     this.userType,
+    this.password,
+    this.password1,
     this.createdAt,
   });
 
+  int id;
   String username;
   String email;
   String name;
   String landlineNumber;
+  String password;
+  String password1;
   String mobileNumber;
   String address;
   UserType userType;
   DateTime createdAt;
 
   factory Staff.fromMap(Map<String, dynamic> json) => Staff(
+        id: json['id'],
         username: json["username"],
         email: json["email"],
         name: json["name"],
+        password: json['password'],
+        password1: json['password2'],
         landlineNumber: json["Landline_number"],
         mobileNumber: json["mobile_number"],
         address: json["address"],
-        userType: json["user_type"] == "AD"
+        userType: json["user_type"].toString() == "UserType.AD"
             ? UserType.AD
-            : json["user_type"] == "ST"
+            : json["user_type"].toString() == "UserType.ST"
                 ? UserType.ST
-                : UserType.CU,
-        createdAt: DateTime.parse(json["created_at"]),
+                : UserType.ST,
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
       );
 
   Map<String, dynamic> toMap() => {
+        "id": id,
         "username": username,
         "email": email,
         "name": name,
         "Landline_number": landlineNumber,
+        "password": password,
+        "password2": password1,
         "mobile_number": mobileNumber,
         "address": address,
-        "user_type": userType.toString(),
-        "created_at": createdAt.toIso8601String(),
+        "user_type": userType.toString().substring(9),
+        "created_at": createdAt?.toIso8601String(),
       };
 }

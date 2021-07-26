@@ -106,10 +106,12 @@ class LoginField extends StatelessWidget {
         onChanged: onChange,
         obscureText: obscure,
         decoration: InputDecoration(
-            labelText: label,
-            icon: Icon(icon),
-            border:
-                OutlineInputBorder(borderRadius: BorderRadius.circular(20))),
+          labelText: label,
+          icon: Icon(icon),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(20),
+          ),
+        ),
       ),
     );
   }

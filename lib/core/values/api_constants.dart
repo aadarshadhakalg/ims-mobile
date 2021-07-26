@@ -1,5 +1,4 @@
-abstract class ApiConstants{
-  
+abstract class ApiConstants {
   // Authentication
   static const SERVER_URL = 'http://voidash.pythonanywhere.com';
   static const LOGIN = '/login/';
@@ -18,10 +17,15 @@ abstract class ApiConstants{
   static const LISTSUBCATEGORY = '/product/subcategorylist/';
   static const DELETESUBCATEGORY = '/product/subcategorydelete/';
   static const UPDATESUBCATEGORY = '/product/subcategoryupdate/';
-  
+
   // Product
   static const ADDPRODUCT = '/product/addproduct/';
   static const LISTPRODUCT = '/product/productlist/';
   static const DELETEPRODUCT = '/product/productdelete/';
   static const UPDATEPRODUCT = '/product/productupdate/';
+
+  // Staff
+  static const LISTSTAFF = '/staff/stafflist/';
+  static const UPDATESTAFF = '/staff/update_profile/';
+  static const ADDSTAFF = '/staff/register/';
 }

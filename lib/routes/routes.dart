@@ -9,4 +9,5 @@ abstract class Routes {
   static const ADDPRODUCT = '/add-product';
 
   static const NEWBILL ='/new-bill';
+  static const RECEIPT ='/receipt';
 }

@@ -46,8 +46,8 @@ class BillPage extends GetView<BillPageController> {
                           style: ButtonStyle(
                             
                           ),
-                          onPressed: (){
-                        },
+                          onPressed: controller.generateReceipt
+                        ,
                          child: Text("Generate Receipt"))
                       ],
                     ),

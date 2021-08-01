@@ -25,6 +25,8 @@ dependencies:
   cupertino_icons: ^1.0.2
   dio: ^4.0.0
   get: ^4.1.4
+  pdf:
+  printing:
   get_storage: ^2.0.2
   flutter_svg: ^0.22.0
   google_fonts: ^2.1.0

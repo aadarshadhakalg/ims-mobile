@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
 import 'package:inventory_management_system/app/data/models/ProductModel.dart';
+import 'package:inventory_management_system/routes/pages.dart';
 import 'repository.dart';
 
 class BillPageController extends GetxController {
@@ -44,6 +45,13 @@ void removeProduct(ProductModel pm){
     }
 
   }
+
+
+ void generateReceipt(){
+   //generate receipt
+   Get.toNamed(Routes.RECEIPT,arguments:addedProducts);
+    
+ }
 
 }
 

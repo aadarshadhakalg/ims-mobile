@@ -2,18 +2,48 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/Material.dart';
 import 'package:get/get.dart';
+import 'package:inventory_management_system/core/utils/dio/dio_base.dart';
+import 'package:inventory_management_system/routes/pages.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:flutter/material.dart';
 import 'package:printing/printing.dart';
 import '../DashBoard/ui/responsive.dart';
 import 'dart:io';
+import '../../data/models/ReceiptModel.dart';
 
 class ReceiptPage extends StatelessWidget {
 
     RxList<RxMap<String,dynamic>> data = Get.arguments;
     var finalTotal = 0;
     final textController = TextEditingController();
+    ReceiptModel receipt;
+
+    void submitReceipt() async {
+    List<int> productId = [];
+    List<String> productQuantity = [];
+    try{
+      print(data);
+      data.forEach((element) {
+       productId.add(element['product'].id);
+       productQuantity.add(element['value'].toString());
+      });
+      String quantityString = productQuantity.join(",");
+      var dataToSend = {
+        'product': productId,
+        'quantity': quantityString 
+      };
+
+      var response = await DioSingleton().instance.post('/product/createReceipt/'
+                  , data: dataToSend 
+          );
+          receipt =  new ReceiptModel.fromJson(response.data);
+          print(receipt.uniqueToken);
+          generatePdf();
+    }catch(e){
+      print(e);
+    }
+    }
 
     void generatePdf() async{
 
@@ -44,6 +74,11 @@ class ReceiptPage extends StatelessWidget {
          mainAxisAlignment: pw.MainAxisAlignment.start,
       children:[
       pw.Text("Grand Total : Rs. $finalTotal"),
+      ] ),
+      pw.Row(
+         mainAxisAlignment: pw.MainAxisAlignment.start,
+      children:[
+      pw.Text("Unique UID : ${receipt.uniqueToken}"),
       ] ),
         ]);
     }));  
@@ -96,9 +131,11 @@ class ReceiptPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                    Expanded(child: ElevatedButton(onPressed: generatePdf, child: Text("Generate Receipt"))),
+                    Expanded(child: ElevatedButton(onPressed:submitReceipt , child: Text("Generate Receipt"))),
                     SizedBox(width: 50),
-                    ElevatedButton(onPressed:(){} ,child: Text("Dashboard")),
+                    ElevatedButton(onPressed:(){
+                      Get.toNamed(Routes.DASHBOARD);
+                    } ,child: Text("Dashboard")),
                   ],)
                 ]
               ),

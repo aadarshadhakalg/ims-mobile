@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventory_management_system/app/data/models/PopularProductModel.dart';
 import '../../../models/product_info.dart';
 
 import '../../../constants.dart';
@@ -9,7 +10,7 @@ class ProductInfoCard extends StatelessWidget {
     @required this.info,
   }) : super(key: key);
 
-  final ProductInfo info;
+  final PopularProductModel info;
 
   @override
   Widget build(BuildContext context) {
@@ -32,37 +33,37 @@ class ProductInfoCard extends StatelessWidget {
                 width: 40,
                 clipBehavior: Clip.antiAlias,
                 decoration: BoxDecoration(
-                  color: info.color.withOpacity(0.1),
+                  color: primaryColor,
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
                 child: Image.asset(
-                  info.image,
+                  'assets/images/tuborg.jpg'
                 ),
               ),
               Icon(Icons.more_vert, color: Colors.white54)
             ],
           ),
           Text(
-            info.title,
+            info.product,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
           ProgressLine(
-            color: info.color,
-            percentage: info.percentage,
+            color: primaryColor,
+            percentage: ((info.originalStock-info.totalStock)/ info.originalStock * 100).toInt(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "${info.sold} Sales",
+                "${info.originalStock - info.totalStock} Sales",
                 style: Theme.of(context)
                     .textTheme
                     .caption
                     .copyWith(color: Colors.white70),
               ),
               Text(
-                '${info.inStock.toString()} In Stock',
+                '${info.totalStock} In Stock',
                 style: Theme.of(context)
                     .textTheme
                     .caption

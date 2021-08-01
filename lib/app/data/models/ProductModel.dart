@@ -16,6 +16,7 @@ class ProductModel {
         this.productLongDescription,
         this.totalStock,
         this.isActive,
+        this.id
     });
 
     String urlSlug;
@@ -28,6 +29,7 @@ class ProductModel {
     String productLongDescription;
     int totalStock;
     int isActive;
+    int id;
 
     factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         urlSlug: json["url_slug"],
@@ -40,6 +42,7 @@ class ProductModel {
         productLongDescription: json["product_long_description"],
         totalStock: json["total_stock"],
         isActive: json["is_active"],
+        id: json["id"]
     );
 
     Map<String, dynamic> toJson() => {
@@ -53,5 +56,6 @@ class ProductModel {
         "product_long_description": productLongDescription,
         "total_stock": totalStock,
         "is_active": isActive,
+        "id": id
     };
 }

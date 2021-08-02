@@ -16,6 +16,7 @@ class ProductModel {
         this.productLongDescription,
         this.totalStock,
         this.isActive,
+        this.id
     });
 
     String urlSlug;
@@ -28,18 +29,20 @@ class ProductModel {
     String productLongDescription;
     int totalStock;
     int isActive;
+    int id;
 
     factory ProductModel.fromJson(Map<String, dynamic> json) => ProductModel(
         urlSlug: json["url_slug"],
         subCategoriesId: json["sub_categories_id"],
         productName: json["product_name"],
         brand: json["brand"],
-        productMaxPrice: json["product_max_price"],
-        productDiscountPrice: json["product_discount_price"],
+        productMaxPrice: json["product_max_price"].toString(),
+        productDiscountPrice: json["product_discount_price"].toString(),
         productDescription: json["product_description"],
         productLongDescription: json["product_long_description"],
         totalStock: json["total_stock"],
         isActive: json["is_active"],
+        id: json["id"]
     );
 
     Map<String, dynamic> toJson() => {
@@ -47,11 +50,12 @@ class ProductModel {
         "sub_categories_id": subCategoriesId,
         "product_name": productName,
         "brand": brand,
-        "product_max_price": productMaxPrice,
-        "product_discount_price": productDiscountPrice,
+        "product_max_price": int.parse(productMaxPrice),
+        "product_discount_price": int.parse(productDiscountPrice),
         "product_description": productDescription,
         "product_long_description": productLongDescription,
         "total_stock": totalStock,
         "is_active": isActive,
+        "id": id
     };
 }

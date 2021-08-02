@@ -1,12 +1,17 @@
+import 'dart:math';
+
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
+import 'package:inventory_management_system/core/values/colors.dart';
 
 import '../../../constants.dart';
 
 class Chart extends StatelessWidget {
   const Chart({
-    Key key,
-  }) : super(key: key);
+    Key key, this.data,
+  }) : super(key: key,);
+
+  final Map<String,dynamic> data;
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +24,26 @@ class Chart extends StatelessWidget {
               sectionsSpace: 0,
               centerSpaceRadius: 70,
               startDegreeOffset: -90,
-              sections: paiChartSelectionDatas,
+              sections: 
+              [
+  ...data['categories'].map(
+    (d){
+      Color _randomColor = Colors.primaries[Random().nextInt(Colors.primaries.length)];
+        return PieChartSectionData(
+          color: _randomColor,
+          value: d.sold.toDouble() ,
+          showTitle: false,
+          radius: 20+d.sold/data['sold'] * 10,
+        );
+      }
+  ),
+  PieChartSectionData(
+    color: primaryColor,
+    value: 15,
+    showTitle: false,
+    radius: 16,
+  ),
+              ],
             ),
           ),
           Positioned.fill(
@@ -28,14 +52,14 @@ class Chart extends StatelessWidget {
               children: [
                 SizedBox(height: defaultPadding),
                 Text(
-                  "1200",
+                  "${data['sold']}",
                   style: Theme.of(context).textTheme.headline4.copyWith(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                         height: 0.5,
                       ),
                 ),
-                Text("of 5000 Items")
+                Text("of ${data['total']} Items")
               ],
             ),
           ),
@@ -46,34 +70,4 @@ class Chart extends StatelessWidget {
 }
 
 List<PieChartSectionData> paiChartSelectionDatas = [
-  PieChartSectionData(
-    color: primaryColor,
-    value: 25,
-    showTitle: false,
-    radius: 25,
-  ),
-  PieChartSectionData(
-    color: Color(0xFF26E5FF),
-    value: 20,
-    showTitle: false,
-    radius: 22,
-  ),
-  PieChartSectionData(
-    color: Color(0xFFFFCF26),
-    value: 10,
-    showTitle: false,
-    radius: 19,
-  ),
-  PieChartSectionData(
-    color: Color(0xFFEE2727),
-    value: 15,
-    showTitle: false,
-    radius: 16,
-  ),
-  PieChartSectionData(
-    color: primaryColor.withOpacity(0.1),
-    value: 25,
-    showTitle: false,
-    radius: 13,
-  ),
 ];

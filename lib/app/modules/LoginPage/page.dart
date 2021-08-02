@@ -42,7 +42,7 @@ class LoginPage extends GetView<LoginPageController> {
                             Image(
                               height: 100,
                               fit: BoxFit.fill,
-                              image: AssetImage('assets/images/logo.png'),
+                              image: AssetImage('assets/images/logo.jpg'),
                             ),
                             SizedBox(
                               height: 10.0,

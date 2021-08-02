@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/utils.dart';
+import 'package:inventory_management_system/app/modules/DashBoard/repository.dart';
 import 'package:inventory_management_system/routes/pages.dart';
 import '../../../models/product_info.dart';
 import '../../../constants.dart';
@@ -66,18 +67,27 @@ class ProductInfoCardGridView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GridView.builder(
-      // scrollDirection: Axis.horizontal,
-      physics: NeverScrollableScrollPhysics(),
-      shrinkWrap: true,
-      itemCount: demoProducts.length,
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: crossAxisCount,
-        crossAxisSpacing: defaultPadding,
-        mainAxisSpacing: defaultPadding,
-        childAspectRatio: childAspectRatio,
-      ),
-      itemBuilder: (context, index) => ProductInfoCard(info: demoProducts[index]),
+    return FutureBuilder(
+      builder:(context,snap){
+        if(snap.hasData){
+       return GridView.builder(
+        // scrollDirection: Axis.horizontal,
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: snap.data.length,
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: crossAxisCount,
+          crossAxisSpacing: defaultPadding,
+          mainAxisSpacing: defaultPadding,
+          childAspectRatio: childAspectRatio,
+        ),
+        itemBuilder: (context, index) => ProductInfoCard(info: snap.data[index]),
+      );
+        }else{
+          return Container(child: CircularProgressIndicator());
+        }
+      },
+      future: DashboardRepository.fetchPopularProducts(),
     );
   }
 }

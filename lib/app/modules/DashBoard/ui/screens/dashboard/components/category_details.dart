@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:inventory_management_system/app/modules/DashBoard/repository.dart';
 
 import '../../../constants.dart';
 import 'category_info_card.dart';
@@ -11,50 +12,50 @@ class CategoryDetails extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(defaultPadding),
-      decoration: BoxDecoration(
-        color: secondaryColor,
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            "Categories",
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
+    return FutureBuilder(
+      builder: (context, snap){
+        if(snap.hasData){
+          print(snap.data);
+      return Container(
+        padding: EdgeInsets.all(defaultPadding),
+        decoration: BoxDecoration(
+          color: secondaryColor,
+          borderRadius: const BorderRadius.all(Radius.circular(10)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              "Categories",
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.w500,
+              ),
             ),
-          ),
-          SizedBox(height: defaultPadding),
-          Chart(),
-          CategoryInfoCard(
-            photo: "assets/images/tuborg.jpg",
-            name: "Drinks",
-            noOfSoldProducts: 1000,
-            noOfSubCategories: 10,
-          ),
-          CategoryInfoCard(
-            photo: "assets/images/tuborg.jpg",
-            name: "Bakery",
-            noOfSoldProducts: 189,
-            noOfSubCategories: 4,
-          ),
-          CategoryInfoCard(
-            photo: "assets/images/tuborg.jpg",
-            name: "Electronics",
-            noOfSoldProducts: 79,
-            noOfSubCategories: 8,
-          ),
-          CategoryInfoCard(
-            photo: "assets/images/tuborg.jpg",
-            name: "Furniture",
-            noOfSoldProducts: 257,
-            noOfSubCategories: 7,
-          ),
-        ],
-      ),
+            SizedBox(height: defaultPadding),
+            Chart(data:snap.data),
+            Container(
+              width:double.infinity,
+              height:300,
+              child: ListView.builder(itemBuilder: (context, index){
+                return CategoryInfoCard(
+                photo: "assets/images/tuborg.jpg",
+                name: snap.data['categories'][index].category,
+                noOfSoldProducts: snap.data['categories'][index].sold,
+                noOfSubCategories: snap.data['categories'][index].subcategories,
+              );
+              },
+              itemCount: snap.data['categories'].length,
+              ),
+            ),
+          ],
+        ),
+      );
+        }else{
+          return Container(child: Center(child: CircularProgressIndicator()),);
+        }
+      },
+      future: DashboardRepository.fetchPopularCategories(),
     );
   }
 }

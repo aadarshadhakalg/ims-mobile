@@ -11,4 +11,6 @@ abstract class Routes {
   static const NEWBILL = '/new-bill';
 
   static const ADDSTAFF = '/add-staff';
+
+  static const RECEIPT = '/receipt';
 }

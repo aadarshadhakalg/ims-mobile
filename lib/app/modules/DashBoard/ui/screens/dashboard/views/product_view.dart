@@ -78,6 +78,8 @@ Future<List<ProductModel>> fetchCategories() async{
     List<ProductModel> products = [];
     try{
       var response = await DioSingleton().instance.get('/product/productlist/');
+
+      print(response.data['results']);
       for(var e in response.data['results']){
         products.add(new ProductModel.fromJson(e));
       }

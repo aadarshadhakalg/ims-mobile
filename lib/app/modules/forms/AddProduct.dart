@@ -192,7 +192,7 @@ if(arguments[0] == 'update'){
                       _formKey.currentState.save();
                       Map<String,dynamic> formData = {..._formKey.currentState.value};
                       formData['is_active'] = formData['is_active'] == true? 1: 0;
-                      print(formData);
+                      print(formData['product_long_description']);
                       var response;
                       if(arguments[0] == "add"){
                         response = await sendData(formData);

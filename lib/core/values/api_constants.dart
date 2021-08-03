@@ -28,4 +28,5 @@ abstract class ApiConstants {
   static const LISTSTAFF = '/staff/stafflist/';
   static const UPDATESTAFF = '/staff/update_profile/';
   static const ADDSTAFF = '/staff/register/';
+  static const DELETESTAFF = '/staff/staff_delete/';
 }

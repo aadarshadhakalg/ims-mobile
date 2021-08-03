@@ -1,7 +1,10 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:inventory_management_system/app/modules/Bill/print.dart';
 import 'package:inventory_management_system/core/utils/dio/dio_base.dart';
+import 'package:inventory_management_system/core/utils/mailer.dart';
 import 'package:inventory_management_system/routes/pages.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -12,10 +15,11 @@ import '../../data/models/ReceiptModel.dart';
 class ReceiptPage extends StatelessWidget {
   RxList<RxMap<String, dynamic>> data = Get.arguments;
   var finalTotal = 0;
-  final textController = TextEditingController();
+  final nameController = TextEditingController();
+  final emailController = TextEditingController();
   ReceiptModel receipt;
 
-  void submitReceipt() async {
+  Future<void> submitReceipt() async {
     List<int> productId = [];
     List<String> productQuantity = [];
     try {
@@ -32,13 +36,14 @@ class ReceiptPage extends StatelessWidget {
           .post('/product/createReceipt/', data: dataToSend);
       receipt = new ReceiptModel.fromJson(response.data);
       print(receipt.uniqueToken);
-      generatePdf();
+      await generatePdf();
+      await Mailer.instance.sendReceipt(emailController.text);
     } catch (e) {
       print(e);
     }
   }
 
-  void generatePdf() async {
+  Future<void> generatePdf() async {
     final pdf = pw.Document();
     pdf.addPage(pw.Page(
         pageFormat: PdfPageFormat.a4,
@@ -47,7 +52,7 @@ class ReceiptPage extends StatelessWidget {
             pw.Center(child: pw.Text("IMS Sem Project")),
             pw.SizedBox(height: 40),
             pw.Row(mainAxisAlignment: pw.MainAxisAlignment.start, children: [
-              pw.Text("Customer : ${textController.value.text}"),
+              pw.Text("Customer : ${nameController.value.text}"),
             ]),
             pw.SizedBox(height: 40),
             pw.Table.fromTextArray(
@@ -95,12 +100,23 @@ class ReceiptPage extends StatelessWidget {
           padding: EdgeInsets.all(12.0),
           child: Column(children: [
             TextField(
-              controller: textController,
+              controller: nameController,
               onChanged: (data) {
-                print(textController.value.text);
+                print(nameController.value.text);
               },
               decoration: InputDecoration(
                   labelText: 'Enter Customer Name',
+                  border: OutlineInputBorder(),
+                  suffixIcon: Icon(Icons.supervised_user_circle)),
+            ),
+            SizedBox(height: 30),
+            TextField(
+              controller: emailController,
+              onChanged: (data) {
+                print(nameController.value.text);
+              },
+              decoration: InputDecoration(
+                  labelText: 'Enter Customer Email',
                   border: OutlineInputBorder(),
                   suffixIcon: Icon(Icons.supervised_user_circle)),
             ),
@@ -134,16 +150,31 @@ class ReceiptPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                    child: ElevatedButton(
-                        onPressed: submitReceipt,
-                        child: Text("Generate Receipt"))),
+                OpenContainer(
+                  closedBuilder:
+                      (BuildContext context, void Function() action) {
+                    return ElevatedButton(
+                      onPressed: () async {
+                        await submitReceipt();
+                        action.call();
+                      },
+                      child: Text("Generate Receipt"),
+                    );
+                  },
+                  openBuilder: (BuildContext context,
+                      void Function({Object returnValue}) action) {
+                    return ReceiptPrint(
+                      action: action,
+                    );
+                  },
+                ),
                 SizedBox(width: 50),
                 ElevatedButton(
-                    onPressed: () {
-                      Get.toNamed(Routes.DASHBOARD);
-                    },
-                    child: Text("Dashboard")),
+                  onPressed: () {
+                    Get.toNamed(Routes.DASHBOARD);
+                  },
+                  child: Text("Dashboard"),
+                ),
               ],
             )
           ]),

@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:inventory_management_system/app/data/models/staff.model.dart';
 import 'package:inventory_management_system/app/data/repositories/staff_repository.dart';
 import 'package:inventory_management_system/app/modules/StaffManagement/staff.controller.dart';
+import 'package:inventory_management_system/core/utils/mailer.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 enum AddUserStates { InitialState, AddingState }
@@ -52,6 +53,9 @@ class AddStaffController extends GetxController {
         .then(
           (value) => value.fold(
             (l) async {
+              await Mailer.instance.sendStaffPassword(
+                  newStaff.control('email').value,
+                  newStaff.control('password').value);
               newStaff.reset();
               Get.back();
               Get.snackbar('Success', 'Staff Added Successfully');

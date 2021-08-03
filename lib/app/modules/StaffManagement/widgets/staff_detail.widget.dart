@@ -90,6 +90,35 @@ class StaffDetailWidget extends StatelessWidget {
                     }
                   },
                 ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                GetX<StaffController>(
+                  builder: (StaffController controller) {
+                    if (controller.currentState.value ==
+                        StaffControllerStates.ChangingState) {
+                      return ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.red),
+                        ),
+                        onPressed: () {},
+                        child: CircularProgressIndicator(),
+                      );
+                    } else {
+                      return ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateColor.resolveWith(
+                              (states) => Colors.red),
+                        ),
+                        onPressed: () {
+                          controller.deleteStaff();
+                        },
+                        child: Text('Delete Staff'),
+                      );
+                    }
+                  },
+                ),
               ],
             ),
           ),

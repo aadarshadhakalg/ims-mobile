@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:inventory_management_system/app/data/models/ReceiptModel.dart';
-import '../../../models/sale_model.dart';
 import '../../../../repository.dart';
 
 import '../../../constants.dart';
@@ -13,61 +12,60 @@ class RecentSales extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      builder: (context, snap){
-        if(snap.hasData){
-       return Container(
-        padding: EdgeInsets.all(defaultPadding),
-        decoration: BoxDecoration(
-          color: secondaryColor,
-          borderRadius: const BorderRadius.all(Radius.circular(10)),
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              "Recent Sales",
-              style: Theme.of(context).textTheme.subtitle1,
-            ),
-            SizedBox(
-              width: double.infinity,
-              child: DataTable(
-                horizontalMargin: 0,
-                columnSpacing: defaultPadding,
-                columns: [
-                  DataColumn(
-                    label: Text("Sales Token"),
+        builder: (context, snap) {
+          if (snap.hasData) {
+            return Container(
+              padding: EdgeInsets.all(defaultPadding),
+              decoration: BoxDecoration(
+                color: secondaryColor,
+                borderRadius: const BorderRadius.all(Radius.circular(10)),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    "Recent Sales",
+                    style: Theme.of(context).textTheme.subtitle1,
                   ),
-                  DataColumn(
-                    label: Text("Date"),
-                  ),
-                  DataColumn(
-                    label: Text("Bill Amount"),
-                  ),
-                  DataColumn(
-                    label: Text("Token Redeemed"),
+                  SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: DataTable(
+                      horizontalMargin: 0,
+                      columnSpacing: defaultPadding,
+                      columns: [
+                        DataColumn(
+                          label: Text("Sales Token"),
+                        ),
+                        DataColumn(
+                          label: Text("Date"),
+                        ),
+                        DataColumn(
+                          label: Text("Bill Amount"),
+                        ),
+                        DataColumn(
+                          label: Text("Token Redeemed"),
+                        ),
+                      ],
+                      rows: List.generate(
+                        snap.data.length,
+                        (index) => recentSaleDataRow(snap.data[index]),
+                      ),
+                    ),
                   ),
                 ],
-                rows: List.generate(
-                  snap.data.length,
-                  (index) => recentSaleDataRow(snap.data[index]),
-                ),
               ),
-            ),
-          ],
-        ),
-          );
-        }else if(snap.hasError){
-          return Container(child: Text("Couldn't fetch data"));
-        }
-        else{
-          return Container(
-            child: Center(child: CircularProgressIndicator(),),
-          );
-        }
-
-      },
-      future: DashboardRepository.fetchReceipts()
-    );
+            );
+          } else if (snap.hasError) {
+            return Container(child: Text("Couldn't fetch data"));
+          } else {
+            return Container(
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            );
+          }
+        },
+        future: DashboardRepository.fetchReceipts());
   }
 }
 
@@ -91,7 +89,9 @@ DataRow recentSaleDataRow(ReceiptModel saleInfo) {
       ),
       DataCell(Text(DateTime.parse(saleInfo.createdAt).toLocal().toString())),
       DataCell(Text('Rs ${saleInfo.purchasePrice}')),
-      DataCell(Icon(saleInfo.redeemed ? Icons.check_circle_outline: Icons.circle_outlined)),
+      DataCell(Icon(saleInfo.redeemed
+          ? Icons.check_circle_outline
+          : Icons.circle_outlined)),
     ],
   );
 }

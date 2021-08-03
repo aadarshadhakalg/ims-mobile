@@ -3,6 +3,7 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:inventory_management_system/app/data/models/staff.model.dart';
 import 'package:inventory_management_system/app/data/repositories/staff_repository.dart';
+import 'package:inventory_management_system/core/utils/notification.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 enum StaffControllerStates {
@@ -67,6 +68,19 @@ class StaffController extends GetxController {
             },
           ),
         );
+  }
+
+  Future deleteStaff() async {
+    var res = await StaffRepository().deleteStaff(selectedStaff.value.id);
+
+    if (res) {
+      await client.notify('Staff Deleted');
+      Get.back();
+    } else {
+      await client.notify('Error! Staff Not Deleted');
+    }
+
+    await refreshStaff();
   }
 
   Future<void> refreshStaff() async {

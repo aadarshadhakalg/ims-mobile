@@ -51,6 +51,16 @@ class StaffRepository {
     return Right(UnknownAppFailure());
   }
 
+  Future<bool> deleteStaff(int id) async {
+    try {
+      await dio.delete(ApiConstants.DELETESTAFF + '$id/');
+      return true;
+    } on DioError catch (e) {
+      stdout.write(e);
+      return false;
+    }
+  }
+
   Future<Either<Staff, Failure>> updateStaff(Staff staff, String id) async {
     print(staff.toMap()
       ..removeWhere((key, value) =>

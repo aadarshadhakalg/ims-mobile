@@ -1,9 +1,11 @@
+import 'dart:io';
 import 'dart:typed_data';
 
 import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'print.dart';
 import '../../../core/utils/dio/dio_base.dart';
 import '../../../core/utils/mailer.dart';
@@ -26,6 +28,10 @@ class ReceiptPage extends StatelessWidget {
   Future<void> submitReceipt() async {
     List<int> productId = [];
     List<String> productQuantity = [];
+    Get.rawSnackbar(
+      title: 'Please Wait!',
+      message: 'Generating Receipt..........',
+    );
     try {
       print(data);
       data.forEach((element) {
@@ -41,6 +47,10 @@ class ReceiptPage extends StatelessWidget {
       receipt = new ReceiptModel.fromJson(response.data);
       print(receipt.uniqueToken);
       await generatePdf();
+      final String dir = (await getApplicationDocumentsDirectory()).path;
+      final String path = '$dir/example.pdf';
+      final File file = File(path);
+      await file.writeAsBytes(generatedPdf);
       Mailer.instance.sendReceipt(emailController.text);
     } catch (e) {
       print(e);
@@ -154,6 +164,7 @@ class ReceiptPage extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 OpenContainer(
+                  closedColor: Colors.transparent,
                   closedBuilder:
                       (BuildContext context, void Function() action) {
                     return ElevatedButton(

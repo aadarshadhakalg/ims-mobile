@@ -63,11 +63,11 @@ class ProductInfoCard extends StatelessWidget {
                     .copyWith(color: Colors.white70),
               ),
               Text(
-                '${info.totalStock} In Stock',
+                '${info.totalStock} Stock',
                 style: Theme.of(context)
                     .textTheme
                     .caption
-                    .copyWith(color: Colors.white),
+                    .copyWith(color: Colors.white, fontSize: 10),
               ),
             ],
           )

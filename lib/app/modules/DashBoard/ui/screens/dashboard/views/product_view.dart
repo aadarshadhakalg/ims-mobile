@@ -7,8 +7,32 @@ import 'package:get/get.dart';
 
 import '../../../../../../../routes/pages.dart';
 
-class ProductView extends StatelessWidget {
+class ProductView extends StatefulWidget {
   const ProductView({Key key}) : super(key: key);
+
+  @override
+  _ProductViewState createState() => _ProductViewState();
+
+  static Future<List<ProductModel>> fetchCategories() async {
+    List<ProductModel> products = [];
+    try {
+      var response = await DioSingleton().instance.get('/product/productlist/');
+
+      print(response.data['results']);
+      for (var e in response.data['results']) {
+        products.add(new ProductModel.fromJson(e));
+      }
+    } catch (e) {
+      print(e);
+    }
+    return products;
+  }
+}
+
+class _ProductViewState extends State<ProductView> {
+  void refreshProduct() {
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,10 +41,16 @@ class ProductView extends StatelessWidget {
       child: Column(
         children: [
           Wrap(
-            runSpacing: 20,
+            runSpacing: 2,
             spacing: 20,
-            alignment: WrapAlignment.spaceBetween,
             children: [
+              addButton(
+                context,
+                "Add Products",
+                () {
+                  Get.toNamed(Routes.ADDPRODUCT, arguments: ["add", ""]);
+                },
+              ),
               addButton(
                 context,
                 "Add Category",
@@ -35,18 +65,12 @@ class ProductView extends StatelessWidget {
                   Get.toNamed(Routes.ADDSUBCATEGORY, arguments: ["add", ""]);
                 },
               ),
-              addButton(
-                context,
-                "Add Products",
-                () {
-                  Get.toNamed(Routes.ADDPRODUCT, arguments: ["add", ""]);
-                },
-              ),
             ],
           ),
           SizedBox(
-            height: 100,
+            height: 20,
           ),
+          Divider(),
           listCategories()
         ],
       ),
@@ -59,11 +83,15 @@ class ProductView extends StatelessWidget {
           if (snap.hasData) {
             return Expanded(
               child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
-                      Get.toNamed(Routes.ADDPRODUCT,
-                          arguments: ["update", "${snap.data[index].urlSlug}"]);
+                      Get.toNamed(Routes.ADDPRODUCT, arguments: [
+                        "update",
+                        "${snap.data[index].urlSlug}",
+                        refreshProduct
+                      ]);
                     },
                     child: Card(
                       elevation: 5,
@@ -95,22 +123,7 @@ class ProductView extends StatelessWidget {
             );
           }
         },
-        future: fetchCategories());
-  }
-
-  Future<List<ProductModel>> fetchCategories() async {
-    List<ProductModel> products = [];
-    try {
-      var response = await DioSingleton().instance.get('/product/productlist/');
-
-      print(response.data['results']);
-      for (var e in response.data['results']) {
-        products.add(new ProductModel.fromJson(e));
-      }
-    } catch (e) {
-      print(e);
-    }
-    return products;
+        future: ProductView.fetchCategories());
   }
 
   ElevatedButton addButton(

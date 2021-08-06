@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import '../../app/modules/Setting/setting_controller.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
@@ -17,13 +18,16 @@ class Mailer {
   static Mailer get instance => _instance ??= Mailer._internal();
 
   Future<void> sendReceipt(String email) async {
+    final String dir = (await getApplicationDocumentsDirectory()).path;
+    final String path = '$dir/example.pdf';
+
     final equivalentMessage = Message()
       ..from = Address('ims@aadarshadhakal.com.np', 'IMS')
       ..recipients.add(Address('$email'))
       ..subject = 'Your Purchase Receipt :: ${DateTime.now()}'
       ..text = 'Thank You For Purchasing At IMS'
       ..attachments = [
-        FileAttachment(File('example.pdf'))
+        FileAttachment(File(path))
           ..location = Location.inline
           ..cid = '<myimg@3.141>'
       ];

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:inventory_management_system/core/utils/qr_generator.dart';
 import '../../data/models/ProductModel.dart';
 import '../../../core/utils/dio/dio_base.dart';
-import '../../../routes/pages.dart';
 import '../../data/models/CategoryModel.dart';
 
 class AddProduct extends StatelessWidget {
@@ -11,6 +11,8 @@ class AddProduct extends StatelessWidget {
 
   final _formKey = GlobalKey<FormBuilderState>();
   var arguments = Get.arguments;
+
+  AddProduct({Key key}) : super(key: key);
 
   Future<dynamic> updateData(Map<String, dynamic> d) async {
     try {
@@ -110,22 +112,28 @@ class AddProduct extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder(
-        builder: (context, snap) {
-          if (snap.hasData) {
-            return form(snap.data);
-          } else if (snap.hasError) {
-            return Center(
-                child:
-                    Text("Error fetching category of slug: ${arguments[1]}"));
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-        future: fetchProduct());
+    return WillPopScope(
+      onWillPop: () async {
+        arguments[2].call();
+        return true;
+      },
+      child: FutureBuilder(
+          builder: (context, snap) {
+            if (snap.hasData) {
+              return form(snap.data, context);
+            } else if (snap.hasError) {
+              return Center(
+                  child:
+                      Text("Error fetching category of slug: ${arguments[1]}"));
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+          future: fetchProduct()),
+    );
   }
 
-  Widget form(ProductModel data) {
+  Widget form(ProductModel data, BuildContext context) {
     return FormBuilder(
       child: Scaffold(
         appBar: AppBar(
@@ -232,7 +240,10 @@ class AddProduct extends StatelessWidget {
                         response = await updateData(formData);
                       }
                       if (response != null) {
-                        Get.toNamed(Routes.DASHBOARD);
+                        GenerateQR().generateFromData(
+                          formData['url_slug'],
+                          formData['product_name'],
+                        );
                       }
                     },
                     child: Text(

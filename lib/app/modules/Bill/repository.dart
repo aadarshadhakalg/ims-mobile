@@ -19,4 +19,21 @@ class BillRepository {
     }
     return [];
   }
+
+  static Future<List<ProductModel>> fetchProductQRSearch(String value) async {
+    if (value != "") {
+      List<ProductModel> categories = [];
+      try {
+        var response =
+            await DioSingleton().instance.get('/product/productSearch/$value/');
+        for (var e in response.data['results']) {
+          categories.add(new ProductModel.fromJson(e));
+        }
+      } catch (e) {
+        print(e);
+      }
+      return categories;
+    }
+    return [];
+  }
 }

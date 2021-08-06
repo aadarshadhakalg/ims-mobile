@@ -16,12 +16,16 @@ class CategoryView extends StatelessWidget {
       child: Column(
         children: [
           Wrap(
-            runSpacing: 20,
+            runSpacing: 2,
             spacing: 20,
-            alignment: WrapAlignment.spaceBetween,
-            crossAxisAlignment: WrapCrossAlignment.start,
-            runAlignment: WrapAlignment.spaceBetween,
             children: [
+              addButton(
+                context,
+                "Add Products",
+                () {
+                  Get.toNamed(Routes.ADDPRODUCT, arguments: ["add", ""]);
+                },
+              ),
               addButton(
                 context,
                 "Add Category",
@@ -36,18 +40,12 @@ class CategoryView extends StatelessWidget {
                   Get.toNamed(Routes.ADDSUBCATEGORY, arguments: ["add", ""]);
                 },
               ),
-              addButton(
-                context,
-                "Add Products",
-                () {
-                  Get.toNamed(Routes.ADDPRODUCT, arguments: ["add", ""]);
-                },
-              ),
             ],
           ),
           SizedBox(
-            height: 100,
+            height: 20,
           ),
+          Divider(),
           listCategories()
         ],
       ),
@@ -60,6 +58,7 @@ class CategoryView extends StatelessWidget {
           if (snap.hasData) {
             return Expanded(
               child: ListView.builder(
+                physics: NeverScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {

@@ -3,11 +3,11 @@ import 'ui/controllers/MenuController.dart';
 
 import 'controller.dart';
 
-class DashboardBindings extends Bindings{
+class DashboardBindings extends Bindings {
   @override
   void dependencies() {
-    Get.put<DashboardPageController>(DashboardPageController());
-    Get.put<MenuController>(MenuController());
+    Get.put<DashboardPageController>(DashboardPageController(),
+        permanent: true);
+    Get.put<MenuController>(MenuController(), permanent: true);
   }
-
 }

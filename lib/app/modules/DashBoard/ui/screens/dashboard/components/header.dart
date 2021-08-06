@@ -110,6 +110,7 @@ class SearchField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: _textEditingController,
+      autofocus: false,
       onEditingComplete: () {
         showSearch(
           context: context,

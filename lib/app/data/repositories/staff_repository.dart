@@ -27,11 +27,10 @@ class StaffRepository {
         ),
       );
       if (response.statusCode == 201 || response.statusCode == 200) {
-        stdout.write(response.data);
         return Left(Staff.fromMap(response.data));
       }
     } on DioError catch (e) {
-      stdout.write(e.requestOptions.headers);
+      stdout.write(e);
       return Right(StaffAdditionFailure(e.message));
     }
     return Right(UnknownAppFailure());

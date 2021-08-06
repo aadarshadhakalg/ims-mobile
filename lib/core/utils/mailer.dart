@@ -1,5 +1,7 @@
 import 'dart:io';
 
+import 'package:get/get.dart';
+import 'package:inventory_management_system/app/modules/Setting/setting_controller.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 
@@ -25,7 +27,9 @@ class Mailer {
           ..location = Location.inline
           ..cid = '<myimg@3.141>'
       ];
-    await send(equivalentMessage, smtpServer);
+    if (Get.find<SettingController>().sendReceiptToEmail.value) {
+      await send(equivalentMessage, smtpServer);
+    }
   }
 
   Future<void> sendStaffPassword(String email, String password) async {
@@ -34,6 +38,8 @@ class Mailer {
       ..recipients.add(Address('$email'))
       ..subject = 'Your Credentials'
       ..text = 'Username: $email \nPassword: $password';
-    await send(equivalentMessage, smtpServer);
+    if (Get.find<SettingController>().sendStaffMail.value) {
+      await send(equivalentMessage, smtpServer);
+    }
   }
 }

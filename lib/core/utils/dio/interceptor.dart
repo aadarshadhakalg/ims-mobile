@@ -11,10 +11,14 @@ import 'dio_base.dart';
 class DioInterceptor extends Interceptor {
   var _dio = DioSingleton();
   static bool checkIfTokenIsExpired(String jwt) {
-    var decodedToken = jwtToJSON(jwtConvertString(jwt));
-    return checkIfAccessTokenIsExpiredFromJSON(decodedToken);
+    if (jwt != null) {
+      var decodedToken = jwtToJSON(jwtConvertString(jwt));
+      return checkIfAccessTokenIsExpiredFromJSON(decodedToken);
+    } else {
+      return false;
+    }
   }
-  
+
   @override
   Future onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
@@ -25,8 +29,10 @@ class DioInterceptor extends Interceptor {
     }
     // even if access token was expired , we now have a new access token
     // Bearer must be in capital letters
-    options.headers['authorization'] =
-        'Bearer ' + GetStorage().read(StorageConstants.ACCESS_KEYS);
+    if (GetStorage().read(StorageConstants.ACCESS_KEYS) != null) {
+      options.headers['authorization'] =
+          'Bearer ' + GetStorage().read(StorageConstants.ACCESS_KEYS);
+    }
     super.onRequest(options, handler);
   }
 

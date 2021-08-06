@@ -3,11 +3,13 @@ import 'package:get/get.dart';
 import 'package:inventory_management_system/app/data/models/staff.model.dart';
 import 'package:inventory_management_system/app/modules/DashBoard/ui/constants.dart';
 import 'package:inventory_management_system/app/modules/DashBoard/ui/responsive.dart';
+import 'package:inventory_management_system/app/modules/StaffManagement/pages/pay_staff_controller.dart';
 import 'package:inventory_management_system/app/modules/StaffManagement/staff.controller.dart';
 import 'package:inventory_management_system/app/modules/StaffManagement/widgets/staffbox_widget.dart';
 
 class StaffView extends StatelessWidget {
   final StaffController _staffController = Get.put(StaffController());
+  final PayrollController _payrollController = Get.put(PayrollController());
 
   @override
   Widget build(BuildContext context) {

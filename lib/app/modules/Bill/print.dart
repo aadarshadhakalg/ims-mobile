@@ -1,10 +1,12 @@
-import 'dart:io';
+import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
 import 'package:printing/printing.dart';
 
 class ReceiptPrint extends StatelessWidget {
-  const ReceiptPrint({Key key, this.action}) : super(key: key);
+  const ReceiptPrint({Key key, this.action, this.receipt}) : super(key: key);
+
+  final Uint8List receipt;
 
   final void Function() action;
 
@@ -20,41 +22,10 @@ class ReceiptPrint extends StatelessWidget {
       ),
       body: Column(
         children: [
-          // Row(
-          //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          //     IconButton(
-          //       onPressed: () {
-          //         action.call();
-          //       },
-          //       icon: Icon(Icons.arrow_back),
-          //     ),
-          //     Spacer(),
-          //     Text(
-          //       'Receipt',
-          //       style: TextStyle(
-          //         fontSize: 25.0,
-          //         fontWeight: FontWeight.bold,
-          //       ),
-          //     ),
-          //     Spacer(),
-          //     CircleAvatar(
-          //       backgroundColor: Colors.blue,
-          //       child: IconButton(
-          //         focusColor: Colors.blue,
-          //         icon: Icon(
-          //           Icons.print,
-          //           color: Colors.white,
-          //         ),
-          //         onPressed: () {},
-          //       ),
-          //     ),
-          //   ],
-          // ),
           Expanded(
             child: PdfPreview(
               build: (pdf) {
-                return File('example.pdf').readAsBytes();
+                return receipt;
               },
             ),
           ),

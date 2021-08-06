@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,15 +11,17 @@ import 'package:inventory_management_system/routes/pages.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
 import '../DashBoard/ui/responsive.dart';
-import 'dart:io';
 import '../../data/models/ReceiptModel.dart';
 
+// ignore: must_be_immutable
 class ReceiptPage extends StatelessWidget {
   RxList<RxMap<String, dynamic>> data = Get.arguments;
   var finalTotal = 0;
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   ReceiptModel receipt;
+
+  Uint8List generatedPdf;
 
   Future<void> submitReceipt() async {
     List<int> productId = [];
@@ -37,7 +41,7 @@ class ReceiptPage extends StatelessWidget {
       receipt = new ReceiptModel.fromJson(response.data);
       print(receipt.uniqueToken);
       await generatePdf();
-      await Mailer.instance.sendReceipt(emailController.text);
+      Mailer.instance.sendReceipt(emailController.text);
     } catch (e) {
       print(e);
     }
@@ -85,8 +89,7 @@ class ReceiptPage extends StatelessWidget {
             ]),
           ]);
         }));
-    final file = File('example.pdf');
-    await file.writeAsBytes(await pdf.save());
+    generatedPdf = await pdf.save();
   }
 
   @override
@@ -165,6 +168,7 @@ class ReceiptPage extends StatelessWidget {
                       void Function({Object returnValue}) action) {
                     return ReceiptPrint(
                       action: action,
+                      receipt: generatedPdf,
                     );
                   },
                 ),

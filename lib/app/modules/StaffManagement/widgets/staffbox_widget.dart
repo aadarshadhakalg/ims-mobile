@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:inventory_management_system/app/data/models/staff.model.dart';
 import 'package:inventory_management_system/app/modules/DashBoard/ui/constants.dart';
+import 'package:inventory_management_system/app/modules/StaffManagement/pages/pay_staff.dart';
+import 'package:inventory_management_system/app/modules/StaffManagement/pages/pay_staff_controller.dart';
 import 'package:inventory_management_system/app/modules/StaffManagement/staff.controller.dart';
 import 'package:inventory_management_system/app/modules/StaffManagement/widgets/staff_detail.widget.dart';
 
@@ -13,6 +15,7 @@ class StaffBox extends StatelessWidget {
   StaffBox({@required this.staff});
 
   final StaffController _staffController = Get.find<StaffController>();
+  final PayrollController _payrollController = Get.find<PayrollController>();
 
   @override
   Widget build(BuildContext context) {
@@ -76,28 +79,47 @@ class StaffBox extends StatelessWidget {
         );
       },
       closedBuilder: (BuildContext context, void Function() action) {
-        return Container(
-          padding: const EdgeInsets.all(defaultPadding),
-          width: 200,
-          height: 100,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.all(
-                Radius.circular(20.0),
+        return Column(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(defaultPadding),
+              width: 150,
+              height: 100,
+              decoration: BoxDecoration(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20.0),
+                  ),
+                  color: secondaryColor),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  CircleAvatar(
+                    child: Text('${staff.id}'),
+                    backgroundColor: Colors.grey,
+                  ),
+                  SizedBox(
+                    height: 10.0,
+                  ),
+                  Text('${staff.name}'),
+                ],
               ),
-              color: secondaryColor),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              CircleAvatar(
-                child: Text('${staff.id}'),
-                backgroundColor: Colors.grey,
+            ),
+            InkWell(
+              onTap: () {
+                _payrollController.selectedStaff.value = staff;
+                showModalBottomSheet(
+                  context: context,
+                  builder: (context) => Payroll(),
+                );
+              },
+              child: Container(
+                width: 150,
+                padding: const EdgeInsets.all(5.0),
+                color: Colors.red,
+                child: Center(child: Text('PAY')),
               ),
-              SizedBox(
-                height: 10.0,
-              ),
-              Text('${staff.name}'),
-            ],
-          ),
+            ),
+          ],
         );
       },
     );

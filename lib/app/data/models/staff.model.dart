@@ -4,16 +4,16 @@
 
 import 'dart:convert';
 
-StaffModel staffModelFromMap(String str) =>
-    StaffModel.fromMap(json.decode(str));
-
-String staffModelToMap(StaffModel data) => json.encode(data.toMap());
-
 enum UserType {
   AD,
   ST,
   CU,
 }
+
+StaffModel staffModelFromMap(String str) =>
+    StaffModel.fromMap(json.decode(str));
+
+String staffModelToMap(StaffModel data) => json.encode(data.toMap());
 
 class StaffModel {
   StaffModel({
@@ -24,8 +24,8 @@ class StaffModel {
   });
 
   int count;
-  dynamic next;
-  dynamic previous;
+  String next;
+  String previous;
   List<Staff> results;
 
   factory StaffModel.fromMap(Map<String, dynamic> json) => StaffModel(
@@ -50,11 +50,12 @@ class Staff {
     this.email,
     this.name,
     this.landlineNumber,
+    this.password,
+    this.password2,
     this.mobileNumber,
     this.address,
+    this.pay,
     this.userType,
-    this.password,
-    this.password1,
     this.createdAt,
   });
 
@@ -64,22 +65,24 @@ class Staff {
   String name;
   String landlineNumber;
   String password;
-  String password1;
+  String password2;
   String mobileNumber;
   String address;
+  int pay;
   UserType userType;
   DateTime createdAt;
 
   factory Staff.fromMap(Map<String, dynamic> json) => Staff(
-        id: json['id'],
+        id: json["id"],
         username: json["username"],
         email: json["email"],
         name: json["name"],
-        password: json['password'],
-        password1: json['password2'],
         landlineNumber: json["Landline_number"],
+        password: json['password'],
+        password2: json['password2'],
         mobileNumber: json["mobile_number"],
         address: json["address"],
+        pay: json["pay"],
         userType: json["user_type"].toString() == "UserType.AD"
             ? UserType.AD
             : json["user_type"].toString() == "UserType.ST"
@@ -96,10 +99,11 @@ class Staff {
         "email": email,
         "name": name,
         "Landline_number": landlineNumber,
-        "password": password,
-        "password2": password1,
         "mobile_number": mobileNumber,
         "address": address,
+        "password": password,
+        "password2": password2,
+        "pay": pay,
         "user_type": userType.toString().substring(9),
         "created_at": createdAt?.toIso8601String(),
       };

@@ -33,6 +33,8 @@ class AddStaffController extends GetxController {
         'address': FormControl<String>(validators: [Validators.required]),
         'user_type': FormControl<UserType>(
             value: UserType.ST, validators: [Validators.required]),
+        'pay': FormControl<int>(
+            validators: [Validators.required, Validators.number]),
       },
       validators: [
         Validators.mustMatch('password', 'password2'),
@@ -58,11 +60,12 @@ class AddStaffController extends GetxController {
                   newStaff.control('password').value);
               newStaff.reset();
               Get.back();
-              Get.snackbar('Success', 'Staff Added Successfully');
+              Get.rawSnackbar(
+                  title: 'Success', message: 'Staff Added Successfully');
               await _controller.refreshStaff();
             },
             (r) {
-              Get.snackbar('Error Adding Staff', r.message);
+              Get.rawSnackbar(title: 'Error Adding Staff', message: r.message);
             },
           ),
         );

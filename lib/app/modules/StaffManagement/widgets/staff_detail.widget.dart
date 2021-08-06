@@ -59,6 +59,11 @@ class StaffDetailWidget extends StatelessWidget {
                   formControlName: 'address',
                   decoration: decoration('Address'),
                 ),
+                SizedBox(height: 10),
+                ReactiveTextField(
+                  formControlName: 'pay',
+                  decoration: decoration('Salary'),
+                ),
                 SizedBox(height: 20),
                 GetX<StaffController>(
                   builder: (StaffController controller) {

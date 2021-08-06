@@ -74,3 +74,13 @@ class StaffListingFailure extends Failure {
 class StaffUpdateFailure extends Failure {
   StaffUpdateFailure(String message) : super(message);
 }
+
+// Payroll Failures
+
+class PayrollListingFailure extends Failure {
+  PayrollListingFailure(String message) : super(message);
+}
+
+class StaffPaymentFailure extends Failure {
+  StaffPaymentFailure(String message) : super(message);
+}

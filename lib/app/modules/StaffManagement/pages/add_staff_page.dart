@@ -82,6 +82,13 @@ class AddStaffPage extends StatelessWidget {
                   decoration: decoration('Address'),
                 ),
                 SizedBox(
+                  height: 10.0,
+                ),
+                ReactiveTextField(
+                  formControlName: 'pay',
+                  decoration: decoration('Salary'),
+                ),
+                SizedBox(
                   height: 30.0,
                 ),
                 GetX<AddStaffController>(

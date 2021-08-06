@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:inventory_management_system/app/modules/Search/search_delegate.dart';
 
 import '../../../../controller.dart';
 import '../../../constants.dart';
@@ -65,8 +66,9 @@ class ProfileCard extends StatelessWidget {
             items: <PopupMenuEntry>[
               PopupMenuItem(
                 child: InkWell(
-                  onTap: ()async{
-                    await Get.find<DashboardPageController>().logoutButtonPressed();
+                  onTap: () async {
+                    await Get.find<DashboardPageController>()
+                        .logoutButtonPressed();
                   },
                   child: Container(
                     child: Text('Logout'),
@@ -86,7 +88,8 @@ class ProfileCard extends StatelessWidget {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: defaultPadding / 2),
-                child: Text(Get.find<DashboardPageController>().loggedInUser.value),
+                child: Text(
+                    Get.find<DashboardPageController>().loggedInUser.value),
               ),
             Icon(Icons.keyboard_arrow_down),
           ],
@@ -97,13 +100,23 @@ class ProfileCard extends StatelessWidget {
 }
 
 class SearchField extends StatelessWidget {
-  const SearchField({
+  SearchField({
     Key key,
   }) : super(key: key);
+
+  final TextEditingController _textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      controller: _textEditingController,
+      onEditingComplete: () {
+        showSearch(
+          context: context,
+          delegate: ProductSearch(),
+          query: _textEditingController.text,
+        );
+      },
       decoration: InputDecoration(
         hintText: "Search",
         fillColor: secondaryColor,
@@ -113,7 +126,13 @@ class SearchField extends StatelessWidget {
           borderRadius: const BorderRadius.all(Radius.circular(10)),
         ),
         suffixIcon: InkWell(
-          onTap: () {},
+          onTap: () {
+            showSearch(
+              context: context,
+              delegate: ProductSearch(),
+              query: _textEditingController.text,
+            );
+          },
           child: Container(
             padding: EdgeInsets.all(defaultPadding * 0.75),
             margin: EdgeInsets.symmetric(horizontal: defaultPadding / 2),

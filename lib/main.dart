@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:inventory_management_system/app/data/services/service.dart';
 import 'package:inventory_management_system/app/modules/LoginPage/binding.dart';
+import 'package:inventory_management_system/app/modules/Setting/setting_controller.dart';
 import 'package:inventory_management_system/core/themes/app_theme.dart';
 
 import 'routes/pages.dart';
@@ -10,6 +11,7 @@ import 'routes/pages.dart';
 Future<void> initServices() async {
   await GetStorage.init();
   await Get.putAsync<AppConfigService>(() async => AppConfigService().init());
+  Get.put(SettingController());
 }
 
 Future<void> main() async {

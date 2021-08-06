@@ -36,6 +36,8 @@ class StaffController extends GetxController {
       'mobile_number': FormControl<String>(
           validators: [Validators.required, Validators.number]),
       'address': FormControl<String>(validators: [Validators.required]),
+      'pay': FormControl<int>(
+          validators: [Validators.required, Validators.number]),
     },
   );
 
@@ -57,12 +59,13 @@ class StaffController extends GetxController {
         .then(
           (value) => value.fold(
             (l) async {
-              Get.snackbar('Success', 'Staff Added Successfully');
+              Get.rawSnackbar(
+                  title: 'Success', message: 'Staff Added Successfully');
               await refreshStaff();
               currentState.value = StaffControllerStates.InitialState;
             },
             (r) {
-              Get.snackbar('Error Adding Staff', r.message);
+              Get.rawSnackbar(title: 'Error Adding Staff', message: r.message);
               currentState.value = StaffControllerStates.EditingState;
               form.markAsEnabled();
             },
@@ -90,7 +93,7 @@ class StaffController extends GetxController {
               allStaffs.value = l;
             },
             (r) {
-              Get.snackbar("Error", "${r.message}");
+              Get.rawSnackbar(title: "Error", message: "${r.message}");
             },
           ),
         );

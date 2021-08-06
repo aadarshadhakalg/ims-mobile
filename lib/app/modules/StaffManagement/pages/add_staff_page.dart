@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/pages/add_staff_controller.dart';
+import 'add_staff_controller.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class AddStaffPage extends StatelessWidget {

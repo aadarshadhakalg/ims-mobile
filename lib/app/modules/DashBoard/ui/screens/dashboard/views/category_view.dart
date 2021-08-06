@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/data/models/CategoryModel.dart';
-import 'package:inventory_management_system/core/utils/dio/dio_base.dart';
-import 'package:inventory_management_system/routes/pages.dart';
+import '../../../../../../data/models/CategoryModel.dart';
+import '../../../../../../../core/utils/dio/dio_base.dart';
+import '../../../../../../../routes/pages.dart';
 import '../../../constants.dart';
 import '../../../responsive.dart';
 

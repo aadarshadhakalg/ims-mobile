@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management_system/app/data/models/PopularProductModel.dart';
-import '../../../models/product_info.dart';
+import '../../../../../../data/models/PopularProductModel.dart';
 
 import '../../../constants.dart';
 
@@ -36,9 +35,7 @@ class ProductInfoCard extends StatelessWidget {
                   color: primaryColor,
                   borderRadius: const BorderRadius.all(Radius.circular(10)),
                 ),
-                child: Image.asset(
-                  'assets/images/tuborg.jpg'
-                ),
+                child: Image.asset('assets/images/tuborg.jpg'),
               ),
               Icon(Icons.more_vert, color: Colors.white54)
             ],
@@ -50,7 +47,10 @@ class ProductInfoCard extends StatelessWidget {
           ),
           ProgressLine(
             color: primaryColor,
-            percentage: ((info.originalStock-info.totalStock)/ info.originalStock * 100).toInt(),
+            percentage: ((info.originalStock - info.totalStock) /
+                    info.originalStock *
+                    100)
+                .toInt(),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,

@@ -1,7 +1,7 @@
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/data/models/payroll_model.dart';
-import 'package:inventory_management_system/app/data/models/staff.model.dart';
-import 'package:inventory_management_system/app/data/repositories/payroll_repository.dart';
+import '../../../data/models/payroll_model.dart';
+import '../../../data/models/staff.model.dart';
+import '../../../data/repositories/payroll_repository.dart';
 
 class PayrollController extends GetxController {
   Rx<Staff> selectedStaff = Rx<Staff>(null);

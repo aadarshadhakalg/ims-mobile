@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management_system/app/data/models/ReceiptModel.dart';
+import '../../../../../../data/models/ReceiptModel.dart';
 import '../../../../repository.dart';
 
 import '../../../constants.dart';

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/constants.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/staff.controller.dart';
+import '../../DashBoard/ui/constants.dart';
+import '../staff.controller.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 class StaffDetailWidget extends StatelessWidget {

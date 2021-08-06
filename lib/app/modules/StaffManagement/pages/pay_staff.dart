@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/data/models/payroll_model.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/pages/pay_staff_controller.dart';
+import '../../../data/models/payroll_model.dart';
+import 'pay_staff_controller.dart';
 
 class Payroll extends StatelessWidget {
   Payroll({Key key}) : super(key: key);

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+
 import '../../../constants.dart';
+import '../../../responsive.dart';
 import '../components/category_details.dart';
 import '../components/recent_sales.dart';
 import '../components/top_sales.dart';
-
-import '../../../responsive.dart';
 
 class CounterView extends StatelessWidget {
   const CounterView({

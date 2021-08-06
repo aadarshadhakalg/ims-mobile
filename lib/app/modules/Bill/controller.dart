@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/data/models/ProductModel.dart';
-import 'package:inventory_management_system/routes/pages.dart';
+import '../../data/models/ProductModel.dart';
+import '../../../routes/pages.dart';
 import 'repository.dart';
 
 class BillPageController extends GetxController {

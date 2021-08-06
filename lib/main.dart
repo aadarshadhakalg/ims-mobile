@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:inventory_management_system/app/data/services/service.dart';
-import 'package:inventory_management_system/app/modules/LoginPage/binding.dart';
-import 'package:inventory_management_system/app/modules/Setting/setting_controller.dart';
-import 'package:inventory_management_system/core/themes/app_theme.dart';
+import 'app/data/services/service.dart';
+import 'app/modules/LoginPage/binding.dart';
+import 'app/modules/Setting/setting_controller.dart';
+import 'core/themes/app_theme.dart';
 
 import 'routes/pages.dart';
 

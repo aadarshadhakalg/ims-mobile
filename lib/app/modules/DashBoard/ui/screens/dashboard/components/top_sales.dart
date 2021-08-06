@@ -2,15 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/utils.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/repository.dart';
-import 'package:inventory_management_system/routes/pages.dart';
-import '../../../models/product_info.dart';
+import '../../../../repository.dart';
+import '../../../../../../../routes/pages.dart';
 import '../../../constants.dart';
 import '../../../responsive.dart';
 import 'product_info_card.dart';
 
 class TopSales extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     final Size _size = MediaQuery.of(context).size;
@@ -68,22 +66,23 @@ class ProductInfoCardGridView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      builder:(context,snap){
-        if(snap.hasData){
-       return GridView.builder(
-        // scrollDirection: Axis.horizontal,
-        physics: NeverScrollableScrollPhysics(),
-        shrinkWrap: true,
-        itemCount: snap.data.length,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: crossAxisCount,
-          crossAxisSpacing: defaultPadding,
-          mainAxisSpacing: defaultPadding,
-          childAspectRatio: childAspectRatio,
-        ),
-        itemBuilder: (context, index) => ProductInfoCard(info: snap.data[index]),
-      );
-        }else{
+      builder: (context, snap) {
+        if (snap.hasData) {
+          return GridView.builder(
+            // scrollDirection: Axis.horizontal,
+            physics: NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemCount: snap.data.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: crossAxisCount,
+              crossAxisSpacing: defaultPadding,
+              mainAxisSpacing: defaultPadding,
+              childAspectRatio: childAspectRatio,
+            ),
+            itemBuilder: (context, index) =>
+                ProductInfoCard(info: snap.data[index]),
+          );
+        } else {
           return Container(child: CircularProgressIndicator());
         }
       },

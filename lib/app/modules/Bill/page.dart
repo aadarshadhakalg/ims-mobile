@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/data/models/ProductModel.dart';
-import 'package:inventory_management_system/app/modules/Bill/controller.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/responsive.dart';
+import '../../data/models/ProductModel.dart';
+import 'controller.dart';
+import '../DashBoard/ui/responsive.dart';
 
 class BillPage extends GetView<BillPageController> {
   Widget build(BuildContext context) {

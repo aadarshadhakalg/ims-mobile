@@ -2,16 +2,18 @@ import 'dart:math';
 
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:inventory_management_system/core/values/colors.dart';
 
 import '../../../constants.dart';
 
 class Chart extends StatelessWidget {
   const Chart({
-    Key key, this.data,
-  }) : super(key: key,);
+    Key key,
+    this.data,
+  }) : super(
+          key: key,
+        );
 
-  final Map<String,dynamic> data;
+  final Map<String, dynamic> data;
 
   @override
   Widget build(BuildContext context) {
@@ -24,25 +26,23 @@ class Chart extends StatelessWidget {
               sectionsSpace: 0,
               centerSpaceRadius: 70,
               startDegreeOffset: -90,
-              sections: 
-              [
-  ...data['categories'].map(
-    (d){
-      Color _randomColor = Colors.primaries[Random().nextInt(Colors.primaries.length)];
-        return PieChartSectionData(
-          color: _randomColor,
-          value: d.sold.toDouble() ,
-          showTitle: false,
-          radius: 20+d.sold/data['sold'] * 10,
-        );
-      }
-  ),
-  PieChartSectionData(
-    color: primaryColor,
-    value: 15,
-    showTitle: false,
-    radius: 16,
-  ),
+              sections: [
+                ...data['categories'].map((d) {
+                  Color _randomColor = Colors
+                      .primaries[Random().nextInt(Colors.primaries.length)];
+                  return PieChartSectionData(
+                    color: _randomColor,
+                    value: d.sold.toDouble(),
+                    showTitle: false,
+                    radius: 20 + d.sold / data['sold'] * 10,
+                  );
+                }),
+                PieChartSectionData(
+                  color: primaryColor,
+                  value: 15,
+                  showTitle: false,
+                  radius: 16,
+                ),
               ],
             ),
           ),
@@ -69,5 +69,4 @@ class Chart extends StatelessWidget {
   }
 }
 
-List<PieChartSectionData> paiChartSelectionDatas = [
-];
+List<PieChartSectionData> paiChartSelectionDatas = [];

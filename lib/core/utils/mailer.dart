@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/modules/Setting/setting_controller.dart';
+import '../../app/modules/Setting/setting_controller.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';
 

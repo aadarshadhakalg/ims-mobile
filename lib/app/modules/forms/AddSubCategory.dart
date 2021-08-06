@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
-import 'package:inventory_management_system/core/utils/dio/dio_base.dart';
+import '../../../core/utils/dio/dio_base.dart';
 import '../../data/models/CategoryModel.dart';
 import 'package:get/get.dart';
 

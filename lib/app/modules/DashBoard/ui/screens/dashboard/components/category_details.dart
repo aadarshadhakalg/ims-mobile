@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/repository.dart';
+import '../../../../repository.dart';
 
 import '../../../constants.dart';
 import 'category_info_card.dart';

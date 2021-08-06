@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/data/models/staff.model.dart';
-import 'package:inventory_management_system/app/data/repositories/staff_repository.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/staff.controller.dart';
-import 'package:inventory_management_system/core/utils/mailer.dart';
+import '../../../data/models/staff.model.dart';
+import '../../../data/repositories/staff_repository.dart';
+import '../staff.controller.dart';
+import '../../../../core/utils/mailer.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 enum AddUserStates { InitialState, AddingState }

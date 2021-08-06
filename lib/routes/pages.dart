@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/pages/add_staff_binding.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/pages/add_staff_page.dart';
+import '../app/modules/StaffManagement/pages/add_staff_binding.dart';
+import '../app/modules/StaffManagement/pages/add_staff_page.dart';
 
 import '../app/modules/DashBoard/binding.dart';
 import '../app/modules/DashBoard/page.dart';

@@ -23,6 +23,7 @@ abstract class ApiConstants {
   static const LISTPRODUCT = '/product/productlist/';
   static const DELETEPRODUCT = '/product/productdelete/';
   static const UPDATEPRODUCT = '/product/productupdate/';
+  static const SEARCHPRODUCT = '/product/search/';
 
   // Staff
   static const LISTSTAFF = '/staff/stafflist/';

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/data/static/about.dart';
-import 'package:inventory_management_system/app/modules/Setting/setting_controller.dart';
+import '../../data/static/about.dart';
+import 'setting_controller.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingView extends StatelessWidget {

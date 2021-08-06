@@ -3,10 +3,10 @@ import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
-import 'package:inventory_management_system/app/data/models/category.model.dart';
-import 'package:inventory_management_system/core/errors/failure.dart';
-import 'package:inventory_management_system/core/utils/dio/dio_base.dart';
-import 'package:inventory_management_system/core/values/api_constants.dart';
+import '../models/category.model.dart';
+import '../../../core/errors/failure.dart';
+import '../../../core/utils/dio/dio_base.dart';
+import '../../../core/values/api_constants.dart';
 
 class CategoryRepository {
   CategoryRepository._internal() {

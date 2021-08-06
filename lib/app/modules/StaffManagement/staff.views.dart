@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/data/models/staff.model.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/constants.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/responsive.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/pages/pay_staff_controller.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/staff.controller.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/widgets/staffbox_widget.dart';
+import '../../data/models/staff.model.dart';
+import '../DashBoard/ui/constants.dart';
+import '../DashBoard/ui/responsive.dart';
+import 'pages/pay_staff_controller.dart';
+import 'staff.controller.dart';
+import 'widgets/staffbox_widget.dart';
 
 class StaffView extends StatelessWidget {
   final StaffController _staffController = Get.put(StaffController());

@@ -2,12 +2,12 @@ import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/data/models/staff.model.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/constants.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/pages/pay_staff.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/pages/pay_staff_controller.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/staff.controller.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/widgets/staff_detail.widget.dart';
+import '../../../data/models/staff.model.dart';
+import '../../DashBoard/ui/constants.dart';
+import '../pages/pay_staff.dart';
+import '../pages/pay_staff_controller.dart';
+import '../staff.controller.dart';
+import 'staff_detail.widget.dart';
 
 class StaffBox extends StatelessWidget {
   final Staff staff;

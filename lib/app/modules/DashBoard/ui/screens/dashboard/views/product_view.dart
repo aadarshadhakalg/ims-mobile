@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management_system/app/data/models/CategoryModel.dart';
-import 'package:inventory_management_system/app/data/models/ProductModel.dart';
-import 'package:inventory_management_system/core/utils/dio/dio_base.dart';
+import '../../../../../../data/models/ProductModel.dart';
+import '../../../../../../../core/utils/dio/dio_base.dart';
 import '../../../constants.dart';
 import '../../../responsive.dart';
 import 'package:get/get.dart';
 
-import 'package:inventory_management_system/routes/pages.dart';
+import '../../../../../../../routes/pages.dart';
 
 class ProductView extends StatelessWidget {
   const ProductView({Key key}) : super(key: key);

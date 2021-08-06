@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
-import 'package:inventory_management_system/app/modules/Setting/setting.view.dart';
-import 'package:inventory_management_system/app/modules/StaffManagement/staff.views.dart';
+import '../../../../Setting/setting.view.dart';
+import '../../../../StaffManagement/staff.views.dart';
 import '../../controllers/MenuController.dart';
 import 'views/analysis_view.dart';
 import 'views/category_view.dart';

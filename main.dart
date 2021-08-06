@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:inventory_management_system/routes/pages.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/page.dart';
 
 Future<void> initServices() async {
   await GetStorage.init();

@@ -48,7 +48,8 @@ class _ProductViewState extends State<ProductView> {
                 context,
                 "Add Products",
                 () {
-                  Get.toNamed(Routes.ADDPRODUCT, arguments: ["add", ""]);
+                  Get.toNamed(Routes.ADDPRODUCT,
+                      arguments: ["add", "", refreshProduct]);
                 },
               ),
               addButton(

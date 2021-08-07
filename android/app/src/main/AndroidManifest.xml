@@ -2,7 +2,7 @@
     package="com.example.inventory_management_system">
    <application
         android:label="inventory_management_system"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/launcher_icon">
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

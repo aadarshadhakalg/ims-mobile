@@ -3,7 +3,7 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import '../../../../Setting/setting.view.dart';
 import '../../../../StaffManagement/staff.views.dart';
 import '../../controllers/MenuController.dart';
-import 'views/analysis_view.dart';
+import '../../../../Analysis/analysis_view.dart';
 import 'views/category_view.dart';
 import 'views/counter_view.dart';
 import 'views/product_view.dart';

@@ -74,8 +74,10 @@ class ProductSearch extends SearchDelegate {
         itemBuilder: (context, index) {
           return InkWell(
             onTap: () {
-              Get.toNamed(Routes.ADDPRODUCT,
-                  arguments: ["update", "${l.results[index].urlSlug}"]);
+              Get.toNamed(
+                Routes.ADDPRODUCT,
+                arguments: ["update", "${l.results[index].urlSlug}", () {}],
+              );
             },
             child: Card(
               elevation: 5,

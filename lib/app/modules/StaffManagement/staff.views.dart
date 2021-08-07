@@ -47,16 +47,19 @@ class StaffView extends StatelessWidget {
                   child: CircularProgressIndicator(),
                 );
               } else {
-                return Wrap(
-                  spacing: 10.0,
-                  runSpacing: 10.0,
-                  direction: Axis.horizontal,
-                  children: [
-                    for (Staff staff in controller.allStaffs.value.results)
-                      StaffBox(
-                        staff: staff,
-                      )
-                  ],
+                return Align(
+                  alignment: Alignment.topLeft,
+                  child: Wrap(
+                    spacing: 10.0,
+                    runSpacing: 10.0,
+                    direction: Axis.horizontal,
+                    children: [
+                      for (Staff staff in controller.allStaffs.value.results)
+                        StaffBox(
+                          staff: staff,
+                        )
+                    ],
+                  ),
                 );
               }
             },

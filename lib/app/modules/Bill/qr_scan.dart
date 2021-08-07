@@ -58,6 +58,7 @@ class _BillQRScanState extends State<BillQRScan> {
   void _onQRViewCreated(QRViewController controller) {
     this.controller = controller;
     showModalBottomSheet(
+      shape: RoundedRectangleBorder(),
       isDismissible: false,
       context: context,
       builder: (context) {

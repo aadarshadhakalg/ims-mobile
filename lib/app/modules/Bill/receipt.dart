@@ -118,9 +118,10 @@ class ReceiptPage extends StatelessWidget {
                 print(nameController.value.text);
               },
               decoration: InputDecoration(
-                  labelText: 'Enter Customer Name',
-                  border: OutlineInputBorder(),
-                  suffixIcon: Icon(Icons.supervised_user_circle)),
+                labelText: 'Enter Customer Name',
+                border: OutlineInputBorder(),
+                suffixIcon: Icon(Icons.supervised_user_circle),
+              ),
             ),
             SizedBox(height: 30),
             TextField(

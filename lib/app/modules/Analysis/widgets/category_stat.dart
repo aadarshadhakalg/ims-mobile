@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/constants.dart';
+import '../../DashBoard/ui/constants.dart';
 
 class CategoryStatCard extends StatelessWidget {
   const CategoryStatCard({

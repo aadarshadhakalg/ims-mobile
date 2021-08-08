@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/modules/Bill/qr_scan.dart';
+import 'qr_scan.dart';
 import '../../data/models/ProductModel.dart';
 import 'controller.dart';
 import '../DashBoard/ui/responsive.dart';

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/responsive.dart';
+import '../../DashBoard/ui/responsive.dart';
 
 class StatCard extends StatelessWidget {
   const StatCard({

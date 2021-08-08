@@ -3,8 +3,8 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/app/data/models/ProductModel.dart';
-import 'package:inventory_management_system/app/modules/Bill/controller.dart';
+import '../../data/models/ProductModel.dart';
+import 'controller.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
 
 class BillQRScan extends StatefulWidget {

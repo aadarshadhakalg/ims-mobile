@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
-import 'package:inventory_management_system/core/utils/qr_generator.dart';
+import '../../../core/utils/qr_generator.dart';
 import '../../data/models/ProductModel.dart';
 import '../../../core/utils/dio/dio_base.dart';
 import '../../data/models/CategoryModel.dart';

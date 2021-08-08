@@ -1,8 +1,8 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:inventory_management_system/app/modules/Bill/qr_scan.dart';
-import 'package:inventory_management_system/routes/pages.dart';
+import '../Bill/qr_scan.dart';
+import '../../../routes/pages.dart';
 import 'package:quick_actions/quick_actions.dart';
 import 'dart:io';
 import '../../../core/values/storage_keys.dart';

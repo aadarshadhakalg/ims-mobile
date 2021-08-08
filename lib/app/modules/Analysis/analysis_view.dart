@@ -1,10 +1,10 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart' as g;
-import 'package:inventory_management_system/app/modules/Analysis/widgets/category_stat.dart';
-import 'package:inventory_management_system/app/modules/Analysis/widgets/stat_card.dart';
-import 'package:inventory_management_system/app/modules/DashBoard/ui/responsive.dart';
-import 'package:inventory_management_system/core/utils/dio/dio_base.dart';
+import 'widgets/category_stat.dart';
+import 'widgets/stat_card.dart';
+import '../DashBoard/ui/responsive.dart';
+import '../../../core/utils/dio/dio_base.dart';
 
 class AnalysisView extends StatelessWidget {
   const AnalysisView({Key key}) : super(key: key);

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-enum Menu{
-  Home,Products,Category,Setting,Staff,Analysis
-}
+enum Menu { Home, Products, Category, Setting, Staff, Analysis }
 
 class MenuController extends GetxController {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
@@ -12,15 +10,15 @@ class MenuController extends GetxController {
 
   Rx<Menu> selectedMenuItem = Rx<Menu>(null);
 
-
-  void goTo(Menu page){
+  void goTo(Menu page) {
     selectedMenuItem.value = page;
   }
-
 
   void controlMenu() {
     if (!_scaffoldKey.currentState.isDrawerOpen) {
       _scaffoldKey.currentState.openDrawer();
+    } else {
+      Get.back();
     }
   }
 }

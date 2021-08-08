@@ -29,6 +29,7 @@ class AuthRepository {
             StorageConstants.REFRESH_KEYS, response.data['refresh']);
         storageBox.write(
             StorageConstants.LOGGED_IN_USER, response.data['user']);
+        storageBox.write('user_type', response.data['user_type']);
         _dio.instance.interceptors.add(
           DioInterceptor(),
         );

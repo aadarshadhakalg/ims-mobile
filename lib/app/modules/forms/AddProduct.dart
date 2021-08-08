@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import '../../../core/utils/qr_generator.dart';
 import '../../data/models/ProductModel.dart';
 import '../../../core/utils/dio/dio_base.dart';
@@ -133,6 +134,15 @@ class AddProduct extends StatelessWidget {
     );
   }
 
+  bool isAuthorized() {
+    GetStorage box = GetStorage();
+    print(box.read('user_type'));
+    if ('AD' == box.read('user_type')) {
+      return true;
+    }
+    return false;
+  }
+
   Widget form(ProductModel data, BuildContext context) {
     return FormBuilder(
       child: Scaffold(
@@ -225,27 +235,29 @@ class AddProduct extends StatelessWidget {
                         style: TextStyle(fontSize: 30),
                       )),
                   TextButton(
-                    onPressed: () async {
-                      _formKey.currentState.save();
-                      Map<String, dynamic> formData = {
-                        ..._formKey.currentState.value
-                      };
-                      formData['is_active'] =
-                          formData['is_active'] == true ? 1 : 0;
-                      print(formData['product_long_description']);
-                      var response;
-                      if (arguments[0] == "add") {
-                        response = await sendData(formData);
-                      } else if (arguments[0] == "update") {
-                        response = await updateData(formData);
-                      }
-                      if (response != null) {
-                        GenerateQR().generateFromData(
-                          formData['url_slug'],
-                          formData['product_name'],
-                        );
-                      }
-                    },
+                    onPressed: !isAuthorized()
+                        ? () async {
+                            _formKey.currentState.save();
+                            Map<String, dynamic> formData = {
+                              ..._formKey.currentState.value
+                            };
+                            formData['is_active'] =
+                                formData['is_active'] == true ? 1 : 0;
+                            print(formData['product_long_description']);
+                            var response;
+                            if (arguments[0] == "add") {
+                              response = await sendData(formData);
+                            } else if (arguments[0] == "update") {
+                              response = await updateData(formData);
+                            }
+                            if (response != null) {
+                              GenerateQR().generateFromData(
+                                formData['url_slug'],
+                                formData['product_name'],
+                              );
+                            }
+                          }
+                        : null,
                     child: Text(
                       "Submit",
                       style: TextStyle(

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:inventory_management_system/core/values/storage_keys.dart';
 import '../../../controllers/MenuController.dart';
 
 class SideMenu extends StatelessWidget {
@@ -81,7 +83,31 @@ class DrawerListTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      onTap: press,
+      onTap: isAuthorized()
+          ? () {
+              press.call();
+              Get.find<MenuController>().controlMenu();
+            }
+          : () {
+              showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: Text('Not Authorized'),
+                    content: Text(
+                        'Staff user have no permission to view this page!'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Get.back();
+                        },
+                        child: Text('OK'),
+                      )
+                    ],
+                  );
+                },
+              );
+            },
       horizontalTitleGap: 0.0,
       leading: SvgPicture.asset(
         svgSrc,
@@ -93,5 +119,16 @@ class DrawerListTile extends StatelessWidget {
         style: TextStyle(color: Colors.white54),
       ),
     );
+  }
+
+  bool isAuthorized() {
+    GetStorage box = GetStorage();
+    print(box.read('user_type'));
+    if ('AD' == box.read('user_type') ||
+        title == 'Counter' ||
+        title == 'Settings') {
+      return true;
+    }
+    return false;
   }
 }

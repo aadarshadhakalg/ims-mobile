@@ -56,7 +56,9 @@ class AddStaffController extends GetxController {
           (value) => value.fold(
             (l) async {
               await Mailer.instance.sendStaffPassword(
+                  newStaff.control('name').value,
                   newStaff.control('email').value,
+                  newStaff.control('username').value,
                   newStaff.control('password').value);
               newStaff.reset();
               Get.back();

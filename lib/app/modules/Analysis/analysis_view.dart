@@ -88,6 +88,7 @@ class AnalysisView extends StatelessWidget {
                       }
                       return ListView.builder(
                         shrinkWrap: true,
+                        physics: NeverScrollableScrollPhysics(),
                         itemCount: snapshot.data.data['count'],
                         itemBuilder: (context, index) {
                           return CategoryStatCard(

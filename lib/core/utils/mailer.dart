@@ -28,6 +28,7 @@ class Mailer {
       ..text = 'Thank You For Purchasing At IMS'
       ..attachments = [
         FileAttachment(File(path))
+          ..fileName = 'receipt.pdf'
           ..location = Location.inline
           ..cid = '<myimg@3.141>'
       ];
@@ -36,12 +37,18 @@ class Mailer {
     }
   }
 
-  Future<void> sendStaffPassword(String email, String password) async {
+  Future<void> sendStaffPassword(
+      String name, String email, String username, String password) async {
     final equivalentMessage = Message()
       ..from = Address('ims@aadarshadhakal.com.np', 'IMS')
       ..recipients.add(Address('$email'))
-      ..subject = 'Your Credentials'
-      ..text = 'Username: $email \nPassword: $password';
+      ..subject = 'Welcome to IMS'
+      ..text = '''Dear $name,
+This is your staff login credentials. Please download our app from this link.          
+-> https://github.com/aadarshadhakalg/ims-mobile/releases/download/0.0.2/app-release.apk
+
+Please don't share your credentials with others!
+Username: $username \nPassword: $password''';
     if (Get.find<SettingController>().sendStaffMail.value) {
       await send(equivalentMessage, smtpServer);
     }

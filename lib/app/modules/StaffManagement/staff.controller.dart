@@ -3,7 +3,6 @@ import 'package:get/get_rx/src/rx_types/rx_types.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import '../../data/models/staff.model.dart';
 import '../../data/repositories/staff_repository.dart';
-import '../../../core/utils/notification.dart';
 import 'package:reactive_forms/reactive_forms.dart';
 
 enum StaffControllerStates {
@@ -77,10 +76,11 @@ class StaffController extends GetxController {
     var res = await StaffRepository().deleteStaff(selectedStaff.value.id);
 
     if (res) {
-      await client.notify('Staff Deleted');
+      refreshStaff();
+      Get.rawSnackbar(title: 'Success', message: 'Staff Deleted');
       Get.back();
     } else {
-      await client.notify('Error! Staff Not Deleted');
+      Get.rawSnackbar(title: 'Error', message: 'Staff Not Deleted');
     }
 
     await refreshStaff();

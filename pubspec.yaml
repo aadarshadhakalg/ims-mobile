@@ -36,7 +36,6 @@ dependencies:
   animations: ^2.0.1
   flutter_form_builder:
   reactive_forms: ^10.5.0
-  desktop_notifications: ^0.5.0
   quick_actions: ^0.6.0+3
   mailer: ^5.0.1
   url_launcher: ^6.0.9

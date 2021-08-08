@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:path_provider/path_provider.dart';
 import '../../app/modules/Setting/setting_controller.dart';
@@ -18,22 +19,38 @@ class Mailer {
   static Mailer get instance => _instance ??= Mailer._internal();
 
   Future<void> sendReceipt(String email) async {
-    final String dir = (await getApplicationDocumentsDirectory()).path;
-    final String path = '$dir/example.pdf';
+    try {
+      final String dir = (await getApplicationDocumentsDirectory()).path;
+      final String path = '$dir/example.pdf';
 
-    final equivalentMessage = Message()
-      ..from = Address('ims@aadarshadhakal.com.np', 'IMS')
-      ..recipients.add(Address('$email'))
-      ..subject = 'Your Purchase Receipt :: ${DateTime.now()}'
-      ..text = 'Thank You For Purchasing At IMS'
-      ..attachments = [
-        FileAttachment(File(path))
-          ..fileName = 'receipt.pdf'
-          ..location = Location.inline
-          ..cid = '<myimg@3.141>'
-      ];
-    if (Get.find<SettingController>().sendReceiptToEmail.value) {
-      await send(equivalentMessage, smtpServer);
+      final equivalentMessage = Message()
+        ..from = Address('ims@aadarshadhakal.com.np', 'IMS')
+        ..recipients.add(Address('$email'))
+        ..subject = 'Your Purchase Receipt :: ${DateTime.now()}'
+        ..text = 'Thank You For Purchasing At IMS'
+        ..attachments = [
+          FileAttachment(File(path))
+            ..fileName = 'receipt.pdf'
+            ..location = Location.inline
+            ..cid = '<myimg@3.141>'
+        ];
+      if (Get.find<SettingController>().sendReceiptToEmail.value) {
+        await send(equivalentMessage, smtpServer);
+      }
+    } catch (e) {
+      Get.dialog(AlertDialog(
+        title: Text('Email Not Sent'),
+        content: Text(
+            'Sorry! Email sending feature is not available in web version of IMS!'),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Get.back();
+            },
+            child: Text('OK'),
+          ),
+        ],
+      ));
     }
   }
 

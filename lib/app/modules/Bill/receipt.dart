@@ -39,9 +39,11 @@ class ReceiptPage extends StatelessWidget {
         productQuantity.add(element['value'].toString());
       });
       String quantityString = productQuantity.join(",");
-      var dataToSend = {'product': productId,
-       'quantity': quantityString, 
-       'email_customer': emailController.text};
+      var dataToSend = {
+        'product': productId,
+        'quantity': quantityString,
+        'email_customer': emailController.text
+      };
 
       var response = await DioSingleton()
           .instance
@@ -49,10 +51,15 @@ class ReceiptPage extends StatelessWidget {
       receipt = new ReceiptModel.fromJson(response.data);
       print(receipt.uniqueToken);
       await generatePdf();
-      final String dir = (await getApplicationDocumentsDirectory()).path;
-      final String path = '$dir/example.pdf';
-      final File file = File(path);
-      await file.writeAsBytes(generatedPdf);
+      try {
+        final String dir = (await getApplicationDocumentsDirectory()).path;
+        final String path = '$dir/example.pdf';
+        final File file = File(path);
+        await file.writeAsBytes(generatedPdf);
+      } catch (e) {
+        print('Cannot Save File');
+      }
+
       Mailer.instance.sendReceipt(emailController.text);
     } catch (e) {
       print(e);

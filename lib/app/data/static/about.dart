@@ -1,4 +1,5 @@
-const String about = "Hello Dudse";
+const String about =
+    "IMS Terminal is the client-side application for interacting with IMS Backend. It aims to provide an interactive and user-friendly interface for the client to manage the inventory.";
 
 const List<Map<String, String>> member = const [
   {

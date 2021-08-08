@@ -30,11 +30,13 @@ class _BillQRScanState extends State<BillQRScan> {
   @override
   void reassemble() {
     super.reassemble();
-    if (Platform.isAndroid) {
-      controller.pauseCamera();
-    } else if (Platform.isIOS) {
-      controller.resumeCamera();
-    }
+    try {
+      if (Platform.isAndroid) {
+        controller.pauseCamera();
+      } else if (Platform.isIOS) {
+        controller.resumeCamera();
+      }
+    } catch (e) {}
   }
 
   @override

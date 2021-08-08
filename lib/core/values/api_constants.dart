@@ -1,6 +1,6 @@
 abstract class ApiConstants {
   // Authentication
-  static const SERVER_URL = 'http://voidash.pythonanywhere.com';
+  static const SERVER_URL = 'https://voidash.pythonanywhere.com';
   static const LOGIN = '/login/';
   static const LOGOUT = '/logout/';
   static const TEST = '/test/';

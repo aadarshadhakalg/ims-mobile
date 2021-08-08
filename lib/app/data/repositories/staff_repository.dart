@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -30,7 +29,6 @@ class StaffRepository {
         return Left(Staff.fromMap(response.data));
       }
     } on DioError catch (e) {
-      stdout.write(e);
       return Right(StaffAdditionFailure(e.message));
     }
     return Right(UnknownAppFailure());
@@ -40,11 +38,9 @@ class StaffRepository {
     try {
       var response = await dio.get(ApiConstants.LISTSTAFF);
       if (response.statusCode == 201 || response.statusCode == 200) {
-        stdout.write(response.data);
         return Left(staffModelFromMap(jsonEncode(response.data)));
       }
     } on DioError catch (e) {
-      stdout.write(e);
       return Right(StaffListingFailure(e.message));
     }
     return Right(UnknownAppFailure());
@@ -55,7 +51,6 @@ class StaffRepository {
       await dio.delete(ApiConstants.DELETESTAFF + '$id/');
       return true;
     } on DioError catch (e) {
-      stdout.write(e);
       return false;
     }
   }
@@ -76,14 +71,11 @@ class StaffRepository {
       );
 
       if (response.statusCode == 201 || response.statusCode == 200) {
-        stdout.write(response.data);
         return Left(
           Staff.fromMap(response.data),
         );
       }
     } on DioError catch (e) {
-      stdout.write(e);
-
       return Right(StaffUpdateFailure(e.message));
     }
     return Right(UnknownAppFailure());

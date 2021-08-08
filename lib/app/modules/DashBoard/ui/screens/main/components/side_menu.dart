@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:inventory_management_system/core/values/storage_keys.dart';
 import '../../../controllers/MenuController.dart';
+import '../../../responsive.dart';
 
 class SideMenu extends StatelessWidget {
   SideMenu({
@@ -86,7 +87,9 @@ class DrawerListTile extends StatelessWidget {
       onTap: isAuthorized()
           ? () {
               press.call();
-              Get.find<MenuController>().controlMenu();
+              if (!Responsive.isDesktop(context)) {
+                Get.find<MenuController>().controlMenu();
+              }
             }
           : () {
               showDialog(

@@ -43,7 +43,10 @@ class SettingView extends StatelessWidget {
                   child: Text('About IMS'),
                 ),
               ),
-              Text('data'),
+              Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Text('$about'),
+              ),
               Divider(),
               ...member
                   .map(

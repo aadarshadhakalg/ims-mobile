@@ -23,24 +23,26 @@ class DashboardPageController extends GetxController {
   void onInit() {
     loggedInUser.value = GetStorage().read(StorageConstants.LOGGED_IN_USER);
 
-    if (Platform.isAndroid) {
-      final QuickActions quickActions = const QuickActions();
-      quickActions.initialize((shortcutType) {
-        if (shortcutType == 'new_bill') {
-          Get.toNamed(Routes.NEWBILL);
-        }
-        if (shortcutType == 'qr_scan') {
-          Get.toNamed(Routes.NEWBILL);
-          Get.to(BillQRScan());
-        }
-      });
-      quickActions.setShortcutItems(<ShortcutItem>[
-        const ShortcutItem(
-            type: 'new_bill', localizedTitle: 'New Bill', icon: 'icon_main'),
-        const ShortcutItem(
-            type: 'qr_scan', localizedTitle: 'QR Scan', icon: 'icon_help')
-      ]);
-    }
+    try {
+      if (Platform.isAndroid) {
+        final QuickActions quickActions = const QuickActions();
+        quickActions.initialize((shortcutType) {
+          if (shortcutType == 'new_bill') {
+            Get.toNamed(Routes.NEWBILL);
+          }
+          if (shortcutType == 'qr_scan') {
+            Get.toNamed(Routes.NEWBILL);
+            Get.to(BillQRScan());
+          }
+        });
+        quickActions.setShortcutItems(<ShortcutItem>[
+          const ShortcutItem(
+              type: 'new_bill', localizedTitle: 'New Bill', icon: 'icon_main'),
+          const ShortcutItem(
+              type: 'qr_scan', localizedTitle: 'QR Scan', icon: 'icon_help')
+        ]);
+      }
+    } catch (e) {}
     super.onInit();
   }
 

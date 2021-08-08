@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:path_provider/path_provider.dart';
 import '../../app/modules/Setting/setting_controller.dart';
 import 'package:mailer/mailer.dart';
 import 'package:mailer/smtp_server.dart';

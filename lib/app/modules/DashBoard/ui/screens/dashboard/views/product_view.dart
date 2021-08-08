@@ -84,7 +84,7 @@ class _ProductViewState extends State<ProductView> {
           if (snap.hasData) {
             return Expanded(
               child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
+                physics: AlwaysScrollableScrollPhysics(),
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {

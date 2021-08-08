@@ -5,7 +5,7 @@ import 'package:animations/animations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get_storage/get_storage.dart';
+import 'package:path_provider/path_provider.dart';
 import 'print.dart';
 import '../../../core/utils/dio/dio_base.dart';
 import '../../../core/utils/mailer.dart';
@@ -39,7 +39,9 @@ class ReceiptPage extends StatelessWidget {
         productQuantity.add(element['value'].toString());
       });
       String quantityString = productQuantity.join(",");
-      var dataToSend = {'product': productId, 'quantity': quantityString};
+      var dataToSend = {'product': productId,
+       'quantity': quantityString, 
+       'email_customer': emailController.text};
 
       var response = await DioSingleton()
           .instance

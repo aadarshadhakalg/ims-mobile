@@ -46,7 +46,7 @@ IMS Terminal is the client-side application for interacting with [IMS Backend](h
 - [IMS Terminal](https://github.com/aadarshadhakalg/ims-mobile/)
 - [IMS Backend](https://github.com/AyushPaudel/Inventory-Management-System)
 - [IMS Portal / IMS Coin](https://github.com/voidash/IMSCoin)
-- [IMS Recommendation Engine]()
+- [IMS Recommendation Engine](https://github.com/AnuragTimilsina/ImsRecommendationEngine)
 
 
 ## Our Team
@@ -54,8 +54,8 @@ IMS Terminal is the client-side application for interacting with [IMS Backend](h
   - [Aadarsha Dhakal](github.com/aadarshadhakalg/)
   - [Sujit KC](https://github.com/sujit08)
   - [Ashish Thapa](https://github.com/voidash/)
-  - [Ayush Paudel](github.com/AyushPaudel/)
-  - [Anurag Timilsina](github.com/anuragTimilsina/)
+  - [Ayush Paudel](https://github.com/AyushPaudel/)
+  - [Anurag Timilsina](https://github.com/anuragTimilsina/)
 
 
 ## License
